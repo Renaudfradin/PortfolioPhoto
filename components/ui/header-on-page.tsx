@@ -1,20 +1,15 @@
-import Image from "next/image";
-import { ImageProps } from "@/utils/types";
-import { AnimatedText } from "./animated-text";
 type Props = {
   children?: string | JSX.Element;
   title: string;
   subtitle: string;
   subtitle2?: string;
-  image?: ImageProps;
 };
 
 export async function Header({
   title,
   subtitle,
   subtitle2,
-  children,
-  image,
+  children
 }: Props) {
   return (
     <>
@@ -24,65 +19,16 @@ export async function Header({
         } h-1/2`}
       >
         <div className="relative isolate px-6 pt-24 lg:px-8">
-          {image && (
-            <p className="text-xl py-2 text-center text-muted-foreground leading-10">
-              <Image
-                className="w-44 h-44 p-1 rounded-full border-2 border-gray-300 dark:border-gray-500 mx-auto object-cover object-center grayscale hover:grayscale-0 hover:drop-shadow-lg"
-                src={image?.src}
-                width={100}
-                height={100}
-                alt="Bordered avatar"
-                placeholder="blur"
-                sizes="100px"
-                blurDataURL={image.blurDataURL}
-              />
-            </p>
-          )}
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight py-4 border-b mb-5 sm:text-6xl">
-              {/* <AnimatedText text={title} once /> */}
               {title}
             </h1>
             <p className="text-xl py-2 text-muted-foreground leading-10">
               {subtitle}
-              {/* <AnimatedText
-                once
-                text={subtitle}
-                animation={{
-                  hidden: {
-                    opacity: 0,
-                    // y: 20,
-                  },
-                  visible: {
-                    opacity: 1,
-                    y: 0,
-                    transition: {
-                      duration: 0.2,
-                    },
-                  },
-                }}
-              /> */}
             </p>
             {subtitle2 && (
               <p className="text-xl py-2 text-muted-foreground leading-10">
                 {subtitle2}
-                {/* <AnimatedText
-                  once
-                  text={subtitle2}
-                  animation={{
-                    hidden: {
-                      opacity: 0,
-                      // y: 20,
-                    },
-                    visible: {
-                      opacity: 1,
-                      y: 0,
-                      transition: {
-                        duration: 0.5,
-                      },
-                    },
-                  }}
-                /> */}
               </p>
             )}
           </div>

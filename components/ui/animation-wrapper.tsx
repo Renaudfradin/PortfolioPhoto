@@ -7,7 +7,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-const AnimationWrapper = ({ children }: Props) => {
+export default function AnimationWrapper ({ children }: Props) {
   return (
     <AnimatePresence>
       <motion.div
@@ -21,5 +21,3 @@ const AnimationWrapper = ({ children }: Props) => {
     </AnimatePresence>
   );
 };
-
-export default AnimationWrapper;

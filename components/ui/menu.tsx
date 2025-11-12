@@ -11,7 +11,7 @@ export default function Menu() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className={`sticky inset-x-0 top-0 z-10 backdrop-blur-md `}>
+    <header className={`sticky inset-x-0 top-0 z-10`}>
       <nav
         className="top-0 flex items-center justify-between p-2.5 lg:px-8"
         aria-label="Global"
@@ -19,9 +19,9 @@ export default function Menu() {
         <div className="flex lg:flex-1">
           <Link href="/" className="m-2.5 p-2">
             <p className="scroll-m-20 text-md font-extrabold tracking-tight lg:text-lg">
-              Thy Umwelt
+              Thy Umweltffff
             </p>
-            <span className="sr-only">Thy Umwelt</span>
+            <span className="sr-only">Thy Umweffffffffflt</span>
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -36,11 +36,10 @@ export default function Menu() {
         </div>
 
         <div className="hidden lg:flex lg:gap-x-12 p-2">
-          <MenuElements className="text-sm underline-offset-8 tracking-wide mx-5 leading-6 box-shadow-lg bg-blend-multiply" />
+          <MenuElements className="text-sm tracking-wide mx-5 leading-6 box-shadow-lg bg-blend-multiply" />
         </div>
 
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          {/* <ModeToggle /> */}
           <ThemeToggle />
         </div>
       </nav>
@@ -59,9 +58,9 @@ export default function Menu() {
               onClick={() => setMobileMenuOpen(false)}
             >
               <p className="scroll-m-20 text-md font-extrabold tracking-tight lg:text-lg">
-                Thy Umwelt
+                Thy Umweltppp
               </p>
-              <span className="sr-only">Thy Umwelt</span>
+              <span className="sr-only">Thy Umwelt898989898989</span>
             </Link>
             <button
               type="button"
@@ -83,7 +82,6 @@ export default function Menu() {
               </div>
               <div className="py-6 flex  justify-center">
                 <ThemeToggle />
-                {/* <ModeToggle /> */}
               </div>
             </div>
           </div>
@@ -93,4 +91,3 @@ export default function Menu() {
   );
 }
 
-// :TODO: Click does not close the menu need to fix this.
