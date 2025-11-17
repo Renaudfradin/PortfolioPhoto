@@ -28,7 +28,8 @@ export default function Home() {
             </p>
           </blockquote>
           <p className="my-6 mb-12 text-sm md:leading-8 text-muted-foreground">
-            &quot;capturer l'essence de l'instant, révéler l'invisible&quot;
+            &quot;capturer l&apos;essence de l&apos;instant, révéler
+            l&apos;invisible&quot;
           </p>
           <Separator />
           <div className="pt-12 text-xs md:text-normal mb-5 lg:hidden opacity-60 ">

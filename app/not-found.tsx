@@ -13,7 +13,7 @@ export default function NotFound() {
           <div className="space-y-2">
             <h1 className="text-4xl font-bold">Photo non trouvée</h1>
             <p className="text-zinc-400">
-              La photo que vous recherchez n'existe pas ou a été supprimée.
+              La photo que vous recherchez n&apos;existe pas ou a été supprimée.
             </p>
           </div>
 

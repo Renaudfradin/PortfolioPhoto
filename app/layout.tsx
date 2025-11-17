@@ -4,13 +4,14 @@ import type { ReactNode, FC } from 'react';
 import Menu from '@/components/ui/menu';
 import { Particles } from '@/components/particles';
 import { Providers } from '@/lib/providers';
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ['latin'] });
 
 interface RootLayoutProps {
   children: ReactNode;
 }
-const RootLayout: FC<RootLayoutProps> = ({ children }) => {
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
@@ -19,9 +20,8 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
           <Particles className="absolute inset-0 -z-10" />
           {children}
         </Providers>
+        <Analytics />
       </body>
     </html>
   );
-};
-
-export default RootLayout;
+}
