@@ -5,14 +5,15 @@ import { photos } from '@/lib/photos-data';
 import { notFound } from 'next/navigation';
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
-  const photo = photos.find((p) => p.id === params.slug);
+  const { slug } = await params;
+  const photo = photos.find((p) => p.id === slug);
 
   if (!photo) {
     return {
@@ -33,8 +34,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function Photographie({ params }: Props) {
-  const photo = photos.find((p) => p.id === params.slug);
+export default async function Photographie({ params }: Props) {
+  const { slug } = await params;
+  const photo = photos.find((p) => p.id === slug);
 
   if (!photo) {
     notFound();
@@ -70,9 +72,6 @@ export default function Photographie({ params }: Props) {
                     </p>
                     <p>
                       <span className="text-zinc-500">Date:</span> {photo.date}
-                    </p>
-                    <p>
-                      <span className="text-zinc-500">ID:</span> {photo.id}
                     </p>
                   </div>
                 </div>

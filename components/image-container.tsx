@@ -36,7 +36,6 @@ export default function ImageContainer({
           <div className="absolute rounded-b-sm top-0 mt-20 right-0 bottom-0 left-0 bg-gradient-to-b from-transparent to-zinc-900 opacity-80 md:opacity-0 group-hover:opacity-80"></div>
           <div>
             <p className="text-xs absolute bottom-1 text-white px-2 transition duration-200 opacity-70 md:opacity-0 group-hover:opacity-75">
-              {photo.series}
               <span className="text-xs font-light line-clamp-1 block opacity-75">
                 {photo.date}
               </span>
