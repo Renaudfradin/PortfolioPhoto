@@ -1,6 +1,6 @@
-"use client";
-import { motion, useInView, useAnimation, Variant } from "framer-motion";
-import { useEffect, useRef } from "react";
+'use client';
+import { motion, useInView, useAnimation, Variant } from 'framer-motion';
+import { useEffect, useRef } from 'react';
 
 type AnimatedTextProps = {
   text: string | string[];
@@ -16,7 +16,10 @@ type AnimatedTextProps = {
 
 const defaultAnimations = {
   hidden: {
-    opacity: 0,
+    opacity: 1,
+    transition: {
+      duration: 1.5,
+    },
   },
   visible: {
     opacity: 1,
@@ -28,7 +31,7 @@ const defaultAnimations = {
 
 export const AnimatedText = ({
   text,
-  el: Wrapper = "p",
+  el: Wrapper = 'p',
   className,
   once,
   repeatDelay,
@@ -42,11 +45,11 @@ export const AnimatedText = ({
   useEffect(() => {
     let timeout: NodeJS.Timeout;
     const show = () => {
-      controls.start("visible");
+      controls.start('visible');
       if (repeatDelay) {
         timeout = setTimeout(async () => {
-          await controls.start("hidden");
-          controls.start("visible");
+          await controls.start('hidden');
+          controls.start('visible');
         }, repeatDelay);
       }
     };
@@ -54,7 +57,7 @@ export const AnimatedText = ({
     if (isInView) {
       show();
     } else {
-      controls.start("hidden");
+      controls.start('hidden');
     }
 
     return () => clearTimeout(timeout);
@@ -75,9 +78,9 @@ export const AnimatedText = ({
       >
         {textArray.map((line, lineIndex) => (
           <span className="block" key={`${line}-${lineIndex}`}>
-            {line.split(" ").map((word, wordIndex) => (
+            {line.split(' ').map((word, wordIndex) => (
               <span className="inline-block" key={`${word}-${wordIndex}`}>
-                {word.split("").map((char, charIndex) => (
+                {word.split('').map((char, charIndex) => (
                   <motion.span
                     key={`${char}-${charIndex}`}
                     className="inline-block"

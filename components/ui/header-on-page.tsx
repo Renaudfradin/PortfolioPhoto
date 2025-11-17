@@ -5,17 +5,12 @@ type Props = {
   subtitle2?: string;
 };
 
-export async function Header({
-  title,
-  subtitle,
-  subtitle2,
-  children
-}: Props) {
+export async function Header({ title, subtitle, subtitle2, children }: Props) {
   return (
     <>
       <div
         className={`flex flex-col items-center justify-between ${
-          children ? "md:px-24 md:pt-24 md:pb-10" : "md:p-24"
+          children ? 'md:px-24 md:pt-24 md:pb-10' : 'md:p-24'
         } h-1/2`}
       >
         <div className="relative isolate px-6 pt-24 lg:px-8">

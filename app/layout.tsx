@@ -1,12 +1,11 @@
-import "./globals.css";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import type { ReactNode, FC } from "react";
-import Menu from "@/components/ui/menu";
-import { Particles } from "@/components/particles";
-import { Providers } from "@/lib/providers";
+import './globals.css';
+import { Inter } from 'next/font/google';
+import type { ReactNode, FC } from 'react';
+import Menu from '@/components/ui/menu';
+import { Particles } from '@/components/particles';
+import { Providers } from '@/lib/providers';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 interface RootLayoutProps {
   children: ReactNode;

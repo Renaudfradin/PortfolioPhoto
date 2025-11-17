@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useTheme } from "next-themes";
-import { Button } from "./button";
-import { useEffect, useState } from "react";
+import { useTheme } from 'next-themes';
+import { Button } from './button';
+import { useEffect, useState } from 'react';
 
 const ThemeToggle = ({ className }: any) => {
   const { theme, resolvedTheme, setTheme } = useTheme();
@@ -19,10 +19,10 @@ const ThemeToggle = ({ className }: any) => {
       <Button
         variant="ghost"
         aria-label="Change theme"
-        size={"icon"}
+        size={'icon'}
         className={`bg-background ${className} `}
         onClick={() => {
-          resolvedTheme === "dark" ? setTheme("light") : setTheme("dark");
+          resolvedTheme === 'dark' ? setTheme('light') : setTheme('dark');
         }}
       >
         <svg

@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { Dialog } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
-import MenuElements from "../../lib/menu-elements";
-import ThemeToggle from "./my-theme-toggle";
+import { useState } from 'react';
+import { Dialog } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
+import MenuElements from '../../lib/menu-elements';
+import ThemeToggle from './my-theme-toggle';
 
 export default function Menu() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className={`sticky inset-x-0 top-0 z-10`}>
+    <header className={`sticky inset-x-0 top-0 z-10 backdrop-blur-md`}>
       <nav
         className="top-0 flex items-center justify-between p-2.5 lg:px-8"
         aria-label="Global"
@@ -19,9 +19,9 @@ export default function Menu() {
         <div className="flex lg:flex-1">
           <Link href="/" className="m-2.5 p-2">
             <p className="scroll-m-20 text-md font-extrabold tracking-tight lg:text-lg">
-              Thy Umweltffff
+              Renaud Fradin
             </p>
-            <span className="sr-only">Thy Umweffffffffflt</span>
+            <span className="sr-only">Renaud Fradin</span>
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -58,9 +58,9 @@ export default function Menu() {
               onClick={() => setMobileMenuOpen(false)}
             >
               <p className="scroll-m-20 text-md font-extrabold tracking-tight lg:text-lg">
-                Thy Umweltppp
+                Renaud Fradin
               </p>
-              <span className="sr-only">Thy Umwelt898989898989</span>
+              <span className="sr-only">Renaud Fradin</span>
             </Link>
             <button
               type="button"
@@ -90,4 +90,3 @@ export default function Menu() {
     </header>
   );
 }
-

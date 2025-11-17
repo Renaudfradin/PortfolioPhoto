@@ -1,7 +1,7 @@
-"use client";
-import React, { useRef, useEffect } from "react";
-import MousePosition from "@/lib/mouse-position";
-import { useTheme } from "next-themes";
+'use client';
+import React, { useRef, useEffect } from 'react';
+import MousePosition from '@/lib/mouse-position';
+import { useTheme } from 'next-themes';
 
 interface ParticlesProps {
   className?: string;
@@ -15,7 +15,7 @@ interface ParticlesProps {
 }
 
 export const Particles: React.FC<ParticlesProps> = ({
-  className = "",
+  className = '',
   quantity = 50,
   staticity = 50,
   ease = 30,
@@ -30,22 +30,22 @@ export const Particles: React.FC<ParticlesProps> = ({
   const mousePosition = MousePosition();
   const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
-  const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
+  const dpr = typeof window !== 'undefined' ? window.devicePixelRatio : 1;
 
   const { theme, resolvedTheme } = useTheme();
-  const color_dark = "rgba(223, 230, 233";
-  const color_light = "rgba(45, 52, 54";
+  const color_dark = 'rgba(223, 230, 233';
+  const color_light = 'rgba(45, 52, 54';
 
   useEffect(() => {
     if (canvasRef.current) {
-      context.current = canvasRef.current.getContext("2d");
+      context.current = canvasRef.current.getContext('2d');
     }
     initCanvas();
     animate();
-    window.addEventListener("resize", initCanvas);
+    window.addEventListener('resize', initCanvas);
 
     return () => {
-      window.removeEventListener("resize", initCanvas);
+      window.removeEventListener('resize', initCanvas);
     };
   }, []);
 
@@ -58,7 +58,7 @@ export const Particles: React.FC<ParticlesProps> = ({
   }, [refresh]);
 
   useEffect(() => {
-    let color = resolvedTheme === "dark" ? color_dark : color_light;
+    let color = resolvedTheme === 'dark' ? color_dark : color_light;
     // console.log("resolvedTheme", resolvedTheme);
     circles.current.forEach((circle: any) => {
       circle.color_t = color;
@@ -122,7 +122,7 @@ export const Particles: React.FC<ParticlesProps> = ({
     const dx = (Math.random() - 0.5) * 0.2;
     const dy = (Math.random() - 0.5) * 0.2;
     const magnetism = 0.1 + Math.random() * 4;
-    let color_t = resolvedTheme === "dark" ? color_dark : color_light;
+    let color_t = resolvedTheme === 'dark' ? color_dark : color_light;
     return {
       x,
       y,
@@ -159,7 +159,7 @@ export const Particles: React.FC<ParticlesProps> = ({
         0,
         0,
         canvasSize.current.w,
-        canvasSize.current.h
+        canvasSize.current.h,
       );
     }
   };
@@ -178,7 +178,7 @@ export const Particles: React.FC<ParticlesProps> = ({
     start1: number,
     end1: number,
     start2: number,
-    end2: number
+    end2: number,
   ): number => {
     const remapped =
       ((value - start1) * (end2 - start2)) / (end1 - start1) + start2;
@@ -197,7 +197,7 @@ export const Particles: React.FC<ParticlesProps> = ({
       ];
       const closestEdge = edge.reduce((a, b) => Math.min(a, b));
       const remapClosestEdge = parseFloat(
-        remapValue(closestEdge, 0, 20, 0, 1).toFixed(2)
+        remapValue(closestEdge, 0, 20, 0, 1).toFixed(2),
       );
       if (remapClosestEdge > 1) {
         circle.alpha += 0.02;
@@ -238,7 +238,7 @@ export const Particles: React.FC<ParticlesProps> = ({
             translateY: circle.translateY,
             alpha: circle.alpha,
           },
-          true
+          true,
         );
       }
     });

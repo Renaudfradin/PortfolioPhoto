@@ -1,8 +1,8 @@
-"use client";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
+'use client';
+
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { motion } from 'framer-motion';
 
 type Props = {
   className?: string;
@@ -18,19 +18,19 @@ export default function MenuElements({
   const pathname = usePathname();
 
   const navigation = [
-    { name: "Photography", href: "/photography" },
-    { name: "Photo-Series", href: "/photo-series" },
-    { name: "About", href: "/about" },
+    { name: 'Photographie', href: '/photography' },
+    // { name: "Photo-Series", href: "/photo-series" },
+    { name: 'About', href: '/about' },
   ];
   return (
     <ul className={`${className} flex justify-center`}>
       {navigation.map((item) => (
         <li key={item.name}>
           <Link
-            onClick={() => (mobileMenuOpen ? setMobileMenuOpen(false) : "")}
+            onClick={() => (mobileMenuOpen ? setMobileMenuOpen(false) : '')}
             href={item.href}
             className={`${className} ${
-              pathname === item.href ? "font-bold " : "no"
+              pathname === item.href ? 'font-bold ' : 'no'
             }  leading-8 px-2 md:px-4 py-2 items-center break-normal inline-block  break-keep`}
           >
             {pathname === item.href && (

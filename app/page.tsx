@@ -1,15 +1,14 @@
-import { AnimatedText } from "@/components/ui/animated-text";
-import AnimationWrapper from "@/components/ui/animation-wrapper";
-import ThemeToggle from "@/components/ui/my-theme-toggle";
-import { Separator } from "@/components/ui/separator";
-import MenuElements from "@/lib/menu-elements";
-import { motion } from "framer-motion";
-import { Metadata } from "next";
+import { AnimatedText } from '@/components/ui/animated-text';
+import AnimationWrapper from '@/components/ui/animation-wrapper';
+import ThemeToggle from '@/components/ui/my-theme-toggle';
+import { Separator } from '@/components/ui/separator';
+import MenuElements from '@/lib/menu-elements';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Home",
+  title: 'Home',
   description:
-    "The world as it is experienced by a particular organism. A website by Ashwin Manghat",
+    'Explorez le monde à travers un regard photographique unique. Portfolio de Renaud Fradin',
 };
 
 export default function Home() {
@@ -19,19 +18,17 @@ export default function Home() {
         <div className="text-center">
           <h1 className="text-5xl font-bold tracking-tight  sm:text-6xl">
             <AnimatedText
-              text="Umwelt"
-              once
+              text="Renaud Fradin"
               className="text-5xl font-bold tracking-tight  sm:text-6xl"
             />
           </h1>
           <blockquote>
             <p className="mt-6 text-md md:text-xl font-bold md:font-normal  underline-offset-4	 leading-8">
-              the world as it is experienced by a particular organism.
+              chaque regard révèle un univers unique.
             </p>
           </blockquote>
           <p className="my-6 mb-12 text-sm md:leading-8 text-muted-foreground">
-            &quot;the worlds they perceive, their Umwelten, are all
-            different&quot;
+            &quot;capturer l'essence de l'instant, révéler l'invisible&quot;
           </p>
           <Separator />
           <div className="pt-12 text-xs md:text-normal mb-5 lg:hidden opacity-60 ">
