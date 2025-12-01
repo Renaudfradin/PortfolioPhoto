@@ -1,29 +1,32 @@
 {
   "IndexPage": {
-    "tagline": "Each glance reveals a unique universe.",
-    "quote": "To capture the essence of the moment, to reveal the invisible."
+    "tagline": "Каждый взгляд открывает уникальную вселенную.",
+    "quote": "Уловить суть момента, раскрыть невидимое."
   },
   "PhotographyPage": {
-    "title": "Photography",
-    "subtitle": "A moment frozen in time, captured to reveal its full beauty.",
-    "subtitle2": "Photography is a hobby that feeds my artistic and technical vision"
+    "title": "Фотография",
+    "subtitle": "Застывший во времени момент, запечатленный, чтобы раскрыть всю его красоту.",
+    "subtitle2": "Фотография — это хобби, которое питает мое художественное и техническое видение.",
+    "series": "Серия",
+    "date": "Дата",
+    "city": "Город"
   },
   "AboutPage": {
     "title": "Renaud Fradin",
-    "subtitle": "Full-Stack developer passionate about creating innovative digital experiences",
-    "subtitle2": "Photography is a hobby that feeds my artistic and technical vision",
+    "subtitle": "Full-Stack-разработчик, увлеченный созданием инновационных цифровых решений",
+    "subtitle2": "Фотография — это хобби, которое питает мое художественное и техническое видение.",
     "linkedin": "LinkedIn",
     "github": "GitHub",
-    "portfolio": "Portfolio"
+    "portfolio": "Портфель"
   },
   "NotFoundPage": {
-    "title": "Page not found",
-    "subtitle": "The photo you are looking for does not exist or has been deleted.",
-    "btn": "Back to gallery",
-    "btn2": "Home"
+    "title": "Страница не найдена",
+    "subtitle": "Фотография, которую вы ищете, не существует или была удалена.",
+    "btn": "Вернуться в галерею",
+    "btn2": "Дом"
   },
   "Menu": {
-    "Photographie": "Photography",
-    "About": "About"
+    "Photographie": "Фотография",
+    "About": "Обо мне"
   }
 }

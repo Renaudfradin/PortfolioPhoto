@@ -35,7 +35,7 @@ export default function Menu() {
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <Link href="/" className="m-2.5 p-2">
+          <Link href={`/${locale}/`} className="m-2.5 p-2">
             <p className="scroll-m-20 text-md font-extrabold tracking-tight lg:text-lg">
               Renaud Fradin
             </p>
@@ -66,6 +66,9 @@ export default function Menu() {
           >
             <option value="fr">FR</option>
             <option value="en">EN</option>
+            <option value="es">ES</option>
+            <option value="de">DE</option>
+            <option value="ru">RU</option>
           </select>
           <ThemeToggle />
         </div>
@@ -80,7 +83,7 @@ export default function Menu() {
         <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto px-6 py-6 sm:max-w-sm sm:ring-1 backdrop-blur-2xl transition-all duration-300 ease-in-out">
           <div className="flex items-center justify-between">
             <Link
-              href="/"
+              href={`/${locale}/`}
               className="-m-1.5 p-2"
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -119,6 +122,9 @@ export default function Menu() {
                 >
                   <option value="fr">FR</option>
                   <option value="en">EN</option>
+                  <option value="es">ES</option>
+                  <option value="de">DE</option>
+                  <option value="ru">RU</option>
                 </select>
                 <ThemeToggle />
               </div>

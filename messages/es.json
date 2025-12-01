@@ -1,29 +1,32 @@
 {
   "IndexPage": {
-    "tagline": "Each glance reveals a unique universe.",
-    "quote": "To capture the essence of the moment, to reveal the invisible."
+    "tagline": "Cada mirada revela un universo único.",
+    "quote": "Capturar la esencia del momento, revelar lo invisible."
   },
   "PhotographyPage": {
-    "title": "Photography",
-    "subtitle": "A moment frozen in time, captured to reveal its full beauty.",
-    "subtitle2": "Photography is a hobby that feeds my artistic and technical vision"
+    "title": "Fotografía",
+    "subtitle": "Un momento congelado en el tiempo, capturado para revelar toda su belleza.",
+    "subtitle2": "La fotografía es una afición que alimenta mi visión artística y técnica.",
+    "series": "Serie",
+    "date": "Fecha",
+    "city": "Ciudad"
   },
   "AboutPage": {
     "title": "Renaud Fradin",
-    "subtitle": "Full-Stack developer passionate about creating innovative digital experiences",
-    "subtitle2": "Photography is a hobby that feeds my artistic and technical vision",
+    "subtitle": "Desarrollador full-stack apasionado por crear experiencias digitales innovadoras",
+    "subtitle2": "La fotografía es una afición que alimenta mi visión artística y técnica.",
     "linkedin": "LinkedIn",
     "github": "GitHub",
     "portfolio": "Portfolio"
   },
   "NotFoundPage": {
-    "title": "Page not found",
-    "subtitle": "The photo you are looking for does not exist or has been deleted.",
-    "btn": "Back to gallery",
-    "btn2": "Home"
+    "title": "Página no encontrada",
+    "subtitle": "La foto que buscas no existe o ha sido eliminada.",
+    "btn": "Volver a la galería",
+    "btn2": "Hogar"
   },
   "Menu": {
-    "Photographie": "Photography",
-    "About": "About"
+    "Photographie": "Fotografía",
+    "About": "Acerca de mí"
   }
 }
