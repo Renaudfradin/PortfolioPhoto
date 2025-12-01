@@ -4,6 +4,10 @@
 
 ![folio](app/assets/img/portfolio.png)
 
+<p>Mon portfolio présentant une sélection de mes photographies argentiques.</p>
+
+<p>My portfolio showcasing a selection of my film photographs.</p>
+
 ## 🛠 Installation & Set Up
 
 1. Install dependencies

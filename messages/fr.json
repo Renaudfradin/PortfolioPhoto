@@ -1,0 +1,32 @@
+{
+  "IndexPage": {
+    "tagline": "Chaque regard révèle un univers unique.",
+    "quote": "Capturer l'essence de l'instant, révéler l'invisible."
+  },
+  "PhotographyPage": {
+    "title": "Photographie",
+    "subtitle": "Un moment figé, capturé pour en dévoiler toute la beauté.",
+    "subtitle2": "Photography is a hobby that feeds my artistic and technical vision",
+    "series": "Série",
+    "date": "Date",
+    "city": "Ville"
+  },
+  "AboutPage": {
+    "title": "Renaud Fradin",
+    "subtitle": "Développeur Full-Stack passionné par la création d'expériences numériques innovantes",
+    "subtitle2": "La photographie est un hobbie qui nourrit mon regard artistique et technique",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "portfolio": "Portfolio"
+  },
+  "NotFoundPage": {
+    "title": "Page non trouvée",
+    "subtitle": "La photo que vous recherchez n'existe pas ou a été supprimée.",
+    "btn": "Retour à la galerie",
+    "btn2": "Accueil"
+  },
+  "Menu": {
+    "Photographie": "Photographie",
+    "About": "À propos"
+  }
+}

@@ -3,6 +3,7 @@ import { Header } from '@/components/ui/header-on-page';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import React from 'react';
+import { getTranslations } from 'next-intl/server';
 
 export const metadata: Metadata = {
   title: 'About',
@@ -19,13 +20,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function About() {
+export default async function About() {
+  const t = await getTranslations('AboutPage');
   return (
     <AnimationWrapper>
       <Header
-        title="Renaud Fradin"
-        subtitle="Développeur Full-Stack passionné par la création d'expériences numériques innovantes"
-        subtitle2="La photographie est un hobbie qui nourrit mon regard artistique et technique"
+        title={t('title')}
+        subtitle={t('subtitle')}
+        subtitle2={t('subtitle2')}
       ></Header>
       <div className="text-center space-y-4">
         <div className="flex justify-center gap-6 mt-6">
@@ -34,21 +36,21 @@ export default function About() {
             className="text-muted-foreground hover:text-foreground transition-colors"
             target="_blank"
           >
-            LinkedIn
+            {t('linkedin')}
           </Link>
           <Link
             href="https://github.com/Renaudfradin"
             className="text-muted-foreground hover:text-foreground transition-colors"
             target="_blank"
           >
-            GitHub
+            {t('github')}
           </Link>
           <Link
             href="https://renaudfradin.vercel.app/"
             className="text-muted-foreground hover:text-foreground transition-colors"
             target="_blank"
           >
-            Portfolio
+            {t('portfolio')}
           </Link>
         </div>
       </div>

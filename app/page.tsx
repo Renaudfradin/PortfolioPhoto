@@ -4,14 +4,16 @@ import ThemeToggle from '@/components/ui/my-theme-toggle';
 import { Separator } from '@/components/ui/separator';
 import MenuElements from '@/lib/menu-elements';
 import { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
 
 export const metadata: Metadata = {
-  title: 'Home',
+  title: 'Renaud Fradin - Portfolio',
   description:
     'Explorez le monde à travers un regard photographique unique. Portfolio de Renaud Fradin',
 };
 
-export default function Home() {
+export default async function Home() {
+  const t = await getTranslations('IndexPage');
   return (
     <AnimationWrapper>
       <div className="flex relative isolate items-center justify-center h-[calc(100vh-160px)] align-middle px-5">
@@ -24,12 +26,11 @@ export default function Home() {
           </h1>
           <blockquote>
             <p className="mt-6 text-md md:text-xl font-bold md:font-normal  underline-offset-4	 leading-8">
-              chaque regard révèle un univers unique.
+              {t('tagline')}
             </p>
           </blockquote>
           <p className="my-6 mb-12 text-sm md:leading-8 text-muted-foreground">
-            &quot;capturer l&apos;essence de l&apos;instant, révéler
-            l&apos;invisible&quot;
+            {t('quote')}
           </p>
           <Separator />
           <div className="pt-12 text-xs md:text-normal mb-5 lg:hidden opacity-60 ">

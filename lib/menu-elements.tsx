@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
+import { useTranslations, useLocale } from 'next-intl';
 
 type Props = {
   className?: string;
@@ -15,12 +16,13 @@ export default function MenuElements({
   mobileMenuOpen,
   setMobileMenuOpen,
 }: Props) {
+  const t = useTranslations('Menu');
   const pathname = usePathname();
+  const locale = useLocale();
 
   const navigation = [
-    { name: 'Photographie', href: '/photography' },
-    // { name: "Photo-Series", href: "/photo-series" },
-    { name: 'About', href: '/about' },
+    { name: t('Photographie'), href: `/${locale}/photography` },
+    { name: t('About'), href: `/${locale}/about` },
   ];
   return (
     <ul className={`${className} flex justify-center`}>

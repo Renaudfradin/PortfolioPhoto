@@ -16,6 +16,7 @@ export interface PhotoData {
   series: string;
   date: string;
   id: string;
+  city: string;
 }
 
 export const photos: PhotoData[] = [
@@ -25,6 +26,7 @@ export const photos: PhotoData[] = [
     series: '35mm',
     date: '2025',
     id: '35mn-003',
+    city: 'Rivière-du-Loup',
   },
   {
     src: img35mn_013,
@@ -32,6 +34,7 @@ export const photos: PhotoData[] = [
     series: '35mm',
     date: '2025',
     id: '35mn-013',
+    city: 'Rivière-du-Loup',
   },
   {
     src: img35mn_015,
@@ -39,6 +42,7 @@ export const photos: PhotoData[] = [
     series: '35mm',
     date: '2025',
     id: '35mn-015',
+    city: 'Rivière-du-Loup',
   },
 
   {
@@ -47,6 +51,7 @@ export const photos: PhotoData[] = [
     series: '35mm',
     date: '2025',
     id: '35mn-003-2',
+    city: 'Montreal',
   },
   {
     src: img35mn_018,
@@ -54,6 +59,7 @@ export const photos: PhotoData[] = [
     series: '35mm',
     date: '2025',
     id: '35mn-018',
+    city: 'Montreal',
   },
   {
     src: img35mn_023,
@@ -61,6 +67,7 @@ export const photos: PhotoData[] = [
     series: '35mm',
     date: '2025',
     id: '35mn-023',
+    city: 'Montreal',
   },
   {
     src: img35mn_002,
@@ -68,6 +75,7 @@ export const photos: PhotoData[] = [
     series: '35mm',
     date: '2025',
     id: '35mn-002',
+    city: 'Montreal',
   },
   {
     src: img110mn_001,
@@ -75,6 +83,7 @@ export const photos: PhotoData[] = [
     series: '110mm',
     date: '2025',
     id: '110mn-001',
+    city: 'Paris',
   },
   {
     src: img110mn_006,
@@ -82,6 +91,7 @@ export const photos: PhotoData[] = [
     series: '110mm',
     date: '2025',
     id: '110mn-006',
+    city: 'Rivière-du-Loup',
   },
   {
     src: img110mn_011,
@@ -89,6 +99,7 @@ export const photos: PhotoData[] = [
     series: '110mm',
     date: '2025',
     id: '110mn-011',
+    city: 'Rivière-du-Loup',
   },
   {
     src: img110mn_019,
@@ -96,5 +107,6 @@ export const photos: PhotoData[] = [
     series: '110mm',
     date: '2025',
     id: '110mn-019',
+    city: 'Rivière-du-Loup',
   },
 ];

@@ -3,6 +3,7 @@ import AnimationWrapper from '@/components/ui/animation-wrapper';
 import { Header } from '@/components/ui/header-on-page';
 import { Metadata } from 'next';
 import { photos } from '@/lib/photos-data';
+import { getTranslations } from 'next-intl/server';
 
 export const metadata: Metadata = {
   title: 'Photography',
@@ -19,14 +20,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Photography() {
+export default async function Photography() {
+  const t = await getTranslations('PhotographyPage');
   return (
     <AnimationWrapper>
       <div>
-        <Header
-          title="Photographie"
-          subtitle="Un moment figé, capturé pour en dévoiler toute la beauté."
-        />
+        <Header title={t('title')} subtitle={t('subtitle')} />
         <section className="py-24 md:mx-1">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {photos.map((photo, index) => (

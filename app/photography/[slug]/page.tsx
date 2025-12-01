@@ -3,6 +3,7 @@ import { Metadata, ResolvingMetadata } from 'next';
 import AnimationWrapper from '@/components/ui/animation-wrapper';
 import { photos } from '@/lib/photos-data';
 import { notFound } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -37,6 +38,7 @@ export async function generateStaticParams() {
 export default async function Photographie({ params }: Props) {
   const { slug } = await params;
   const photo = photos.find((p) => p.id === slug);
+  const t = await getTranslations('PhotographyPage');
 
   if (!photo) {
     notFound();
@@ -67,11 +69,16 @@ export default async function Photographie({ params }: Props) {
                   <h1 className="text-2xl font-bold mb-2">{photo.alt}</h1>
                   <div className="space-y-2 text-zinc-300">
                     <p>
-                      <span className="text-zinc-500">Série:</span>{' '}
+                      <span className="text-zinc-500">{t('series')}:</span>{' '}
                       {photo.series}
                     </p>
                     <p>
-                      <span className="text-zinc-500">Date:</span> {photo.date}
+                      <span className="text-zinc-500">{t('date')}:</span>{' '}
+                      {photo.date}
+                    </p>
+                    <p>
+                      <span className="text-zinc-500">{t('city')}:</span>{' '}
+                      {photo.city}
                     </p>
                   </div>
                 </div>

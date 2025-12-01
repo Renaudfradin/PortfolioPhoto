@@ -6,9 +6,27 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import MenuElements from '../../lib/menu-elements';
 import ThemeToggle from './my-theme-toggle';
+import { useLocale } from 'next-intl';
+import { usePathname, useRouter } from 'next/navigation';
 
 export default function Menu() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleChangeLocale = (nextLocale: string) => {
+    if (!pathname || nextLocale === locale) return;
+
+    const segments = pathname.split('/');
+    if (segments.length > 1 && segments[1]) {
+      segments[1] = nextLocale;
+      const newPath = segments.join('/') || '/';
+      router.push(newPath);
+    } else {
+      router.push(`/${nextLocale}`);
+    }
+  };
 
   return (
     <header className={`sticky inset-x-0 top-0 z-10 backdrop-blur-md`}>
@@ -39,7 +57,16 @@ export default function Menu() {
           <MenuElements className="text-sm tracking-wide mx-5 leading-6 box-shadow-lg bg-blend-multiply" />
         </div>
 
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end gap-4">
+          <select
+            aria-label="Select language"
+            className="rounded-md border bg-background px-2 py-1 text-sm"
+            value={locale}
+            onChange={(e) => handleChangeLocale(e.target.value)}
+          >
+            <option value="fr">FR</option>
+            <option value="en">EN</option>
+          </select>
           <ThemeToggle />
         </div>
       </nav>
@@ -80,7 +107,19 @@ export default function Menu() {
                   setMobileMenuOpen={setMobileMenuOpen}
                 />
               </div>
-              <div className="py-6 flex  justify-center">
+              <div className="py-6 flex items-center justify-center gap-4">
+                <select
+                  aria-label="Select language"
+                  className="rounded-md border bg-background px-2 py-1 text-sm"
+                  value={locale}
+                  onChange={(e) => {
+                    handleChangeLocale(e.target.value);
+                    setMobileMenuOpen(false);
+                  }}
+                >
+                  <option value="fr">FR</option>
+                  <option value="en">EN</option>
+                </select>
                 <ThemeToggle />
               </div>
             </div>

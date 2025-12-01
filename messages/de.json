@@ -1,0 +1,29 @@
+{
+  "IndexPage": {
+    "tagline": "Each glance reveals a unique universe.",
+    "quote": "To capture the essence of the moment, to reveal the invisible."
+  },
+  "PhotographyPage": {
+    "title": "Photography",
+    "subtitle": "A moment frozen in time, captured to reveal its full beauty.",
+    "subtitle2": "Photography is a hobby that feeds my artistic and technical vision"
+  },
+  "AboutPage": {
+    "title": "Renaud Fradin",
+    "subtitle": "Full-Stack developer passionate about creating innovative digital experiences",
+    "subtitle2": "Photography is a hobby that feeds my artistic and technical vision",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "portfolio": "Portfolio"
+  },
+  "NotFoundPage": {
+    "title": "Page not found",
+    "subtitle": "The photo you are looking for does not exist or has been deleted.",
+    "btn": "Back to gallery",
+    "btn2": "Home"
+  },
+  "Menu": {
+    "Photographie": "Photography",
+    "About": "About"
+  }
+}
