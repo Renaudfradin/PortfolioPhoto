@@ -5,6 +5,8 @@ import { notFound } from 'next/navigation';
 import Menu from '@/components/ui/menu';
 import { Particles } from '@/components/particles';
 
+export const dynamic = 'force-dynamic';
+
 interface LocaleLayoutProps {
   children: ReactNode;
   params: Promise<{ locale: string }>;
