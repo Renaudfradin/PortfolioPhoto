@@ -26,7 +26,7 @@ export default async function Photography() {
     <AnimationWrapper>
       <div>
         <Header title={t('title')} subtitle={t('subtitle')} />
-        <section className="py-24 md:mx-1">
+        <section className="py-24">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {photos.map((photo, index) => (
               <ImageContainer key={index} photo={photo} index={index} />
