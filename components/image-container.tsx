@@ -13,12 +13,12 @@ export default function ImageContainer({
   index = 0,
 }: ImageContainerProps) {
   return (
-    <div className="md:w-[500px] justify-self-center">
+    <div className="w-full mb-6 break-inside-avoid">
       <div className="relative group group-hover:brightness-150 transition duration-200 group-hover:shadow-lg hover:shadow-indigo-500/90 border-2 border-zinc-500/20 hover:border-zinc-500/70 rounded-sm">
         <Link
           href={`/photography/${photo.id}`}
           scroll={false}
-          className="grid place-content-center"
+          className="block"
         >
           <Image
             style={{ transform: 'translate3d(0, 0, 0)' }}
@@ -37,7 +37,7 @@ export default function ImageContainer({
           <div>
             <p className="text-xs absolute bottom-1 text-white px-2 transition duration-200 opacity-70 md:opacity-0 group-hover:opacity-75">
               <span className="text-xs font-light line-clamp-1 block opacity-75">
-                {photo.date}
+                {photo.city}
               </span>
             </p>
           </div>
