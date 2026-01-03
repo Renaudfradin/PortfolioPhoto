@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { PhotoData } from '@/lib/photos-data';
+import { useLocale } from 'next-intl';
 
 interface ImageContainerProps {
   photo: PhotoData;
@@ -12,11 +13,12 @@ export default function ImageContainer({
   photo,
   index = 0,
 }: ImageContainerProps) {
+  const locale = useLocale();
   return (
     <div className="w-full mb-6 break-inside-avoid">
       <div className="relative group group-hover:brightness-150 transition duration-200 group-hover:shadow-lg hover:shadow-indigo-500/90 border-2 border-zinc-500/20 hover:border-zinc-500/70 rounded-sm">
         <Link
-          href={`/photography/${photo.id}`}
+          href={`/${locale}/photography/${photo.id}`}
           scroll={false}
           className="block"
         >

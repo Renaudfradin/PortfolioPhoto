@@ -114,7 +114,6 @@ export const photos: PhotoData[] = [
     id: '110mn-019',
     city: 'Rivière-du-Loup',
   },
-  
   {
     src: img35mn_00003229_007,
     alt: 'Photographie argentique 35mm - 00003229-007',
@@ -123,7 +122,7 @@ export const photos: PhotoData[] = [
     id: '35mn_00003229_007',
     city: 'Nice',
   },
-  
+
   {
     src: img35mn_00003229_023,
     alt: 'Photographie argentique 35mm - 00003229-023',
@@ -132,7 +131,7 @@ export const photos: PhotoData[] = [
     id: '35mn_00003229_023',
     city: 'Nice',
   },
-  
+
   {
     src: img35mn_00003229_030,
     alt: 'Photographie argentique 35mm - 00003229-030',
@@ -141,7 +140,7 @@ export const photos: PhotoData[] = [
     id: '35mn_00003229_030',
     city: 'Nice',
   },
-  
+
   {
     src: img35mn_00003229_035,
     alt: 'Photographie argentique 35mm - 00003229-035',
@@ -150,7 +149,7 @@ export const photos: PhotoData[] = [
     id: '35mn_00003229_035',
     city: 'Nice',
   },
-  
+
   {
     src: img35mn_00003229_037,
     alt: 'Photographie argentique 35mm - 00003229-037',
@@ -159,5 +158,4 @@ export const photos: PhotoData[] = [
     id: '35mn_00003229_037',
     city: 'Paris',
   },
-  
 ];

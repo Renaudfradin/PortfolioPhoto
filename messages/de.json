@@ -17,7 +17,8 @@
     "subtitle2": "Fotografie ist ein Hobby, das meine künstlerische und technische Vision nährt.",
     "linkedin": "LinkedIn",
     "github": "GitHub",
-    "portfolio": "Portfolio"
+    "portfolio": "Portfolio",
+    "legal": "Rechtliche Hinweise"
   },
   "NotFoundPage": {
     "title": "Seite nicht gefunden",
@@ -28,5 +29,27 @@
   "Menu": {
     "Photographie": "Fotografie",
     "About": "Über mich"
+  },
+  "LegalPage": {
+    "title": "Rechtliche Hinweise",
+    "subtitle": "Rechtliche Hinweise zur Website und ihrem Betrieb.",
+    "title2": "Herausgeber der Website",
+    "title6": "Unterkunft",
+    "subtitle3": "Name",
+    "subtitle4": "Status",
+    "subtitle5": "E-Mail",
+    "subtitle6": "Unterkunft",
+    "subtitle7": "Adresse",
+    "subtitle8": "Website",
+    "status": "Fotograf / Portfolio",
+    "title3": "Geistiges Eigentum",
+    "title4": "Persönliche Daten",
+    "title5": "Verantwortung",
+    "subtitle9": "Alle Inhalte dieser Website (Fotos usw.) sind urheberrechtlich und/oder durch geistige Eigentumsrechte geschützt.",
+    "subtitle10": "Jede vollständige oder teilweise Vervielfältigung, Darstellung, Änderung, Veröffentlichung oder Anpassung der Elemente dieser Website, unabhängig vom verwendeten Verfahren, ist ohne vorherige schriftliche Genehmigung untersagt.",
+    "subtitle11": "Diese Website sammelt keine personenbezogenen Daten ohne Wissen der Nutzer. Wenn ein Kontaktformular vorhanden ist, werden die gesammelten Daten nur im Rahmen der beruflichen Beziehung verwendet und weder an Dritte weitergegeben noch verkauft.",
+    "subtitle12": "Gemäß dem französischen Datenschutzgesetz „Informatique et Libertés“ und der DSGVO haben Sie das Recht auf Zugang, Berichtigung oder Löschung Ihrer Daten. Um dieses Recht auszuüben, wenden Sie sich bitte an: renaudfradin@gmail.com .",
+    "subtitle13": "Der Herausgeber bemüht sich, möglichst genaue Informationen bereitzustellen. Er kann jedoch nicht für Auslassungen, Ungenauigkeiten oder Mängel bei der Aktualisierung haftbar gemacht werden.",
+    "subtitle14": "Die Website kann Links zu anderen Websites enthalten. Der Herausgeber hat keine Kontrolle über diese Websites und lehnt jede Verantwortung für deren Inhalt ab."
   }
 }

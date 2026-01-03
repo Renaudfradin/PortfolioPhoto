@@ -2,8 +2,7 @@ import AnimationWrapper from '@/components/ui/animation-wrapper';
 import { Header } from '@/components/ui/header-on-page';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import React from 'react';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 
 export const metadata: Metadata = {
   title: 'About',
@@ -22,6 +21,7 @@ export const metadata: Metadata = {
 
 export default async function About() {
   const t = await getTranslations('AboutPage');
+  const locale = await getLocale();
   return (
     <AnimationWrapper>
       <Header
@@ -51,6 +51,12 @@ export default async function About() {
             target="_blank"
           >
             {t('portfolio')}
+          </Link>
+           <Link
+            href={`/${locale}/legal`}
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            {t('legal')}
           </Link>
         </div>
       </div>
