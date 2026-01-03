@@ -17,7 +17,8 @@
     "subtitle2": "La fotografía es una afición que alimenta mi visión artística y técnica.",
     "linkedin": "LinkedIn",
     "github": "GitHub",
-    "portfolio": "Portfolio"
+    "portfolio": "Portfolio",
+    "legal": "Información legal"
   },
   "NotFoundPage": {
     "title": "Página no encontrada",
@@ -28,5 +29,27 @@
   "Menu": {
     "Photographie": "Fotografía",
     "About": "Acerca de mí"
+  },
+  "LegalPage": {
+    "title": "Información legal",
+    "subtitle": "Información legal relativa al sitio y su funcionamiento.",
+    "title2": "Editor del sitio web",
+    "title6": "Alquiler",
+    "subtitle3": "Nombre",
+    "subtitle4": "Estado",
+    "subtitle5": "Correo electrónico",
+    "subtitle6": "Anfitrión",
+    "subtitle7": "Dirección",
+    "subtitle8": "Sitio web",
+    "status": "Fotógrafo / Portafolio",
+    "title3": "Propiedad intelectual",
+    "title4": "Datos personales",
+    "title5": "Responsabilidad",
+    "subtitle9": "Todos los contenidos presentes en este sitio web (fotografías, etc.) están protegidos por derechos de autor y/o derechos de propiedad intelectual.",
+    "subtitle10": "Queda prohibida cualquier reproducción, representación, modificación, publicación o adaptación, total o parcial, de los elementos del sitio web, por cualquier procedimiento, sin autorización previa por escrito.",
+    "subtitle11": "Este sitio web no recopila datos personales sin el conocimiento de los usuarios. Si hay un formulario de contacto, los datos recopilados solo se utilizan en el marco de la relación profesional y no se ceden ni se venden a terceros.",
+    "subtitle12": "De conformidad con la ley francesa «Informática y Libertades» y el RGPD, usted tiene derecho a acceder, rectificar o eliminar sus datos. Para ejercer este derecho, póngase en contacto con: renaudfradin@gmail.com .",
+    "subtitle13": "El editor se esfuerza por proporcionar información lo más precisa posible. Sin embargo, no se hace responsable de las omisiones, inexactitudes o deficiencias en la actualización.",
+    "subtitle14": "El sitio web puede contener enlaces a otros sitios web. El editor no ejerce ningún control sobre estos sitios web y declina toda responsabilidad por su contenido."
   }
 }

@@ -17,7 +17,8 @@
     "subtitle2": "Photography is a hobby that feeds my artistic and technical vision",
     "linkedin": "LinkedIn",
     "github": "GitHub",
-    "portfolio": "Portfolio"
+    "portfolio": "Portfolio",
+    "legal": "Legal notices"
   },
   "NotFoundPage": {
     "title": "Page not found",
@@ -28,5 +29,27 @@
   "Menu": {
     "Photographie": "Photography",
     "About": "About"
+  },
+  "LegalPage": {
+    "title": "Legal notices",
+    "subtitle": "Legal information relating to the website and its operation.",
+    "title2": "Website publisher",
+    "title6": "Accommodation",
+    "subtitle3": "Name",
+    "subtitle4": "Status",
+    "subtitle5": "Email",
+    "subtitle6": "Host",
+    "subtitle7": "Address",
+    "subtitle8": "Web Site",
+    "status": "Photographer / Portfolio",
+    "title3": "Intellectual property",
+    "title4": "Personal information",
+    "title5": "Liability",
+    "subtitle9": "All content on this website (photographs, etc.) is protected by copyright and/or intellectual property rights.",
+    "subtitle10": "Any reproduction, representation, modification, publication, adaptation, in whole or in part, of the elements of the website, by any means whatsoever, is prohibited without prior written authorisation.",
+    "subtitle11": "This website does not collect personal data without users' knowledge. If a contact form is present, the data collected is used only in the context of the professional relationship and is not transferred or sold to third parties.",
+    "subtitle12": "In accordance with the French Data Protection Act and the GDPR, you have the right to access, rectify or delete your data. To exercise this right, please contact: renaudfradin@gmail.com.",
+    "subtitle13": "The publisher endeavours to provide information that is as accurate as possible. However, it cannot be held responsible for omissions, inaccuracies or deficiencies in updates.",
+    "subtitle14": "The website may contain links to other websites. The publisher has no control over these websites and accepts no responsibility for their content."
   }
 }

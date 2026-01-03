@@ -17,7 +17,8 @@
     "subtitle2": "La photographie est un hobbie qui nourrit mon regard artistique et technique",
     "linkedin": "LinkedIn",
     "github": "GitHub",
-    "portfolio": "Portfolio"
+    "portfolio": "Portfolio",
+    "legal": "Mentions Légales"
   },
   "NotFoundPage": {
     "title": "Page non trouvée",
@@ -28,5 +29,27 @@
   "Menu": {
     "Photographie": "Photographie",
     "About": "À propos"
+  },
+  "LegalPage": {
+    "title": "Mentions légales",
+    "subtitle": "Informations légales relatives au site et à son exploitation.",
+    "title2": "Éditeur du site",
+    "title6": "Hébergement",
+    "subtitle3": "Nom",
+    "subtitle4": "Statut",
+    "subtitle5": "Email",
+    "subtitle6": "Hébergeur",
+    "subtitle7": "Adresse",
+    "subtitle8": "Site web",
+    "status": "Photographe / Portfolio",
+    "title3": "Propriété intellectuelle",
+    "title4": "Données personnelles",
+    "title5": "Responsabilité",
+    "subtitle9": "L’ensemble des contenus présents sur ce site (photographies.) est protégé par le droit d’auteur et/ou le droit de la propriété intellectuelle.",
+    "subtitle10": "Toute reproduction, représentation, modification, publication, adaptation, totale ou partielle, des éléments du site, par quelque procédé que ce soit, est interdite sans autorisation écrite préalable.",
+    "subtitle11": "Ce site ne collecte pas de données personnelles à l’insu des utilisateurs. Si un formulaire de contact est présent, les données collectées ne sont utilisées que dans le cadre de la relation professionnelle et ne sont ni cédées ni vendues à des tiers.",
+    "subtitle12": "Conformément à la loi « Informatique et Libertés » et au RGPD, vous disposez d’un droit d’accès, de rectification ou de suppression de vos données. Pour exercer ce droit, contactez : renaudfradin@gmail.com .",
+    "subtitle13": "L’éditeur s’efforce de fournir des informations aussi précises que possible. Toutefois, il ne saurait être tenu responsable des omissions, inexactitudes ou carences dans la mise à jour.",
+    "subtitle14": "Le site peut contenir des liens vers d’autres sites. L’éditeur n’exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu."
   }
 }
