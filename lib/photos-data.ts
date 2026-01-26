@@ -10,6 +10,14 @@ import img35mn_00003229_023 from '@/app/assets/img/35mn/00003229-023.jpg';
 import img35mn_00003229_030 from '@/app/assets/img/35mn/00003229-030.jpg';
 import img35mn_00003229_035 from '@/app/assets/img/35mn/00003229-035.jpg';
 import img35mn_00003229_037 from '@/app/assets/img/35mn/00003229-037.jpg';
+import img35mn_903df_00 from '@/app/assets/img/35mn/903df-00.jpg';
+import img35mn_903df_09 from '@/app/assets/img/35mn/903df-09.jpg';
+import img35mn_903df_20 from '@/app/assets/img/35mn/903df-20.jpg';
+import img35mn_903df_24 from '@/app/assets/img/35mn/903df-24.jpg';
+import img35mn_b75e9_15 from '@/app/assets/img/35mn/b75e9-15.jpg';
+import img35mn_b75e9_17 from '@/app/assets/img/35mn/b75e9-17.jpg';
+import img35mn_b75e9_18 from '@/app/assets/img/35mn/b75e9-18.jpg';
+import img35mn_b75e9_19 from '@/app/assets/img/35mn/b75e9-19.jpg';
 import img110mn_001 from '@/app/assets/img/110mn/001.jpg';
 import img110mn_006 from '@/app/assets/img/110mn/006.jpg';
 import img110mn_011 from '@/app/assets/img/110mn/011.jpg';
@@ -154,8 +162,80 @@ export const photos: PhotoData[] = [
     src: img35mn_00003229_037,
     alt: 'Photographie argentique 35mm - 00003229-037',
     series: '35mm',
-    date: '2025',
+    date: '2026',
     id: '35mn_00003229_037',
+    city: 'Paris',
+  },
+
+  {
+    src: img35mn_b75e9_15,
+    alt: 'Photographie argentique 35mm - b75e9-15',
+    series: '35mm',
+    date: '2026',
+    id: '35mn_b75e9_15',
+    city: 'Paris',
+  },
+
+  {
+    src: img35mn_b75e9_17,
+    alt: 'Photographie argentique 35mm - b75e9-17',
+    series: '35mm',
+    date: '2026',
+    id: '35mn_b75e9_17',
+    city: 'Paris',
+  },
+
+  {
+    src: img35mn_b75e9_18,
+    alt: 'Photographie argentique 35mm - b75e9-18',
+    series: '35mm',
+    date: '2026',
+    id: '35mn_b75e9_18',
+    city: 'Paris',
+  },
+
+  {
+    src: img35mn_b75e9_19,
+    alt: 'Photographie argentique 35mm - b75e9-19',
+    series: '35mm',
+    date: '2026',
+    id: '35mn_b75e9_19',
+    city: 'Paris',
+  },
+
+  {
+    src: img35mn_903df_00,
+    alt: 'Photographie argentique 35mm - 903df-00',
+    series: '35mm',
+    date: '2026',
+    id: 'img35mn_903df_00',
+    city: 'Paris',
+  },
+
+  {
+    src: img35mn_903df_09,
+    alt: 'Photographie argentique 35mm - 903df-00',
+    series: '35mm',
+    date: '2026',
+    id: 'img35mn_903df_09',
+    city: 'Paris',
+  },
+
+  {
+    src: img35mn_903df_20,
+    alt: 'Photographie argentique 35mm - 903df-00',
+    series: '35mm',
+    date: '2026',
+    id: 'img35mn_903df_20',
+    city: 'Paris',
+  },
+
+  {
+    src: img35mn_903df_24,
+    alt: 'Photographie argentique 35mm - 903df-00',
+    series: '35mm',
+    date: '2026',
+    id: 'img35mn_903df_24',
     city: 'Paris',
   },
 ];
