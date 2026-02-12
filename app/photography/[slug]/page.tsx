@@ -96,29 +96,29 @@ export default async function Photographie({ params }: Props) {
 
               <div className="lg:col-span-1 space-y-6">
                 <div>
-                  <h1 className="text-2xl font-bold mb-2">{name}</h1>
-                  <div className="space-y-2 text-zinc-300">
+                  {/* <h1 className="text-2xl font-bold mb-2">{name}</h1> */}
+                  <div className="space-y-2 text-muted-foreground">
                     {photo.series ? (
                       <p>
-                        <span className="text-zinc-500">{t('series')}:</span>{' '}
+                        <span className="text-muted-foreground">{t('series')}:</span>{' '}
                         {photo.series}mm
                       </p>
                     ) : null}
                     {photo.date ? (
                       <p>
-                        <span className="text-zinc-500">{t('date')}:</span>{' '}
+                        <span className="text-muted-foreground">{t('date')}:</span>{' '}
                         {photo.date}
                       </p>
                     ) : null}
                     {photo.city ? (
                       <p>
-                        <span className="text-zinc-500">{t('city')}:</span>{' '}
+                        <span className="text-muted-foreground">{t('city')}:</span>{' '}
                         {photo.city}
                       </p>
                     ) : null}
                     {photo.camera_name ? (
                       <p>
-                        <span className="text-zinc-500">{t('camera')}:</span>{' '}
+                        <span className="text-muted-foreground">{t('camera')}:</span>{' '}
                         {photo.camera_name}
                       </p>
                     ) : null}
