@@ -1,20 +1,47 @@
 import Image from 'next/image';
 import { Metadata, ResolvingMetadata } from 'next';
 import AnimationWrapper from '@/components/ui/animation-wrapper';
-import { photos } from '@/lib/photos-data';
+import { callApi } from '@/lib/api';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
+import type { PhotographieType } from '@/lib/types/photography';
+
+export const dynamic = 'force-dynamic';
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
+
+function extractPhoto(data: unknown): PhotographieType | null {
+  if (!data || typeof data !== 'object' || Array.isArray(data)) {
+    return null;
+  }
+
+  const record = data as Record<string, unknown>;
+  const candidate =
+    record.data ??
+    record.photo ??
+    record.photography ??
+    record.item ??
+    record.result;
+
+  if (candidate && typeof candidate === 'object' && !Array.isArray(candidate)) {
+    return candidate as unknown as PhotographieType;
+  }
+
+  return record as unknown as PhotographieType;
+}
 
 export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const { slug } = await params;
-  const photo = photos.find((p) => p.id === slug);
+  const data = await callApi<unknown>(`/api/photography/${slug}`);
+  const photo = extractPhoto(data);
+  const name = photo?.name ?? 'Photo';
+  const series = photo?.series;
+  const date = photo?.date;
 
   if (!photo) {
     return {
@@ -23,26 +50,29 @@ export async function generateMetadata(
   }
 
   return {
-    title: `${photo.alt} - Renaud Fradin Photography`,
-    description: `${photo.alt} - Série ${photo.series} (${photo.date})`,
-    keywords: ['Renaud Fradin', 'Photography', 'Photographie', photo.series],
+    title: `${name} - Renaud Fradin Photography`,
+    description: `${name}${series ? ` - Série ${series}` : ''}${date ? ` (${date})` : ''}`,
+    keywords: ['Renaud Fradin', 'Photography', 'Photographie', series].filter(
+      (k): k is string => typeof k === 'string' && k.length > 0,
+    ),
   };
 }
 
 export async function generateStaticParams() {
-  return photos.map((photo) => ({
-    slug: photo.id,
-  }));
+  return [];
 }
 
 export default async function Photographie({ params }: Props) {
   const { slug } = await params;
-  const photo = photos.find((p) => p.id === slug);
+  const data = await callApi<unknown>(`/api/photography/${slug}`);
+  const photo = extractPhoto(data);
   const t = await getTranslations('PhotographyPage');
 
   if (!photo) {
     notFound();
   }
+
+  const name = photo.name ?? '';
 
   return (
     <AnimationWrapper>
@@ -53,8 +83,8 @@ export default async function Photographie({ params }: Props) {
               <div className="lg:col-span-2">
                 <div className="relative aspect-[4/3] w-full">
                   <Image
-                    src={photo.src}
-                    alt={photo.alt}
+                    src={photo.image}
+                    alt={name}
                     fill
                     className="object-contain rounded-lg"
                     quality={95}
@@ -66,20 +96,32 @@ export default async function Photographie({ params }: Props) {
 
               <div className="lg:col-span-1 space-y-6">
                 <div>
-                  <h1 className="text-2xl font-bold mb-2">{photo.alt}</h1>
+                  <h1 className="text-2xl font-bold mb-2">{name}</h1>
                   <div className="space-y-2 text-zinc-300">
-                    <p>
-                      <span className="text-zinc-500">{t('series')}:</span>{' '}
-                      {photo.series}
-                    </p>
-                    <p>
-                      <span className="text-zinc-500">{t('date')}:</span>{' '}
-                      {photo.date}
-                    </p>
-                    <p>
-                      <span className="text-zinc-500">{t('city')}:</span>{' '}
-                      {photo.city}
-                    </p>
+                    {photo.series ? (
+                      <p>
+                        <span className="text-zinc-500">{t('series')}:</span>{' '}
+                        {photo.series}mm
+                      </p>
+                    ) : null}
+                    {photo.date ? (
+                      <p>
+                        <span className="text-zinc-500">{t('date')}:</span>{' '}
+                        {photo.date}
+                      </p>
+                    ) : null}
+                    {photo.city ? (
+                      <p>
+                        <span className="text-zinc-500">{t('city')}:</span>{' '}
+                        {photo.city}
+                      </p>
+                    ) : null}
+                    {photo.camera_name ? (
+                      <p>
+                        <span className="text-zinc-500">{t('camera')}:</span>{' '}
+                        {photo.camera_name}
+                      </p>
+                    ) : null}
                   </div>
                 </div>
               </div>

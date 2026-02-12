@@ -52,7 +52,7 @@ export default async function About() {
           >
             {t('portfolio')}
           </Link>
-           <Link
+          <Link
             href={`/${locale}/legal`}
             className="text-muted-foreground hover:text-foreground transition-colors"
           >
