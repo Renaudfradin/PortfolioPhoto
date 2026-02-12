@@ -9,7 +9,8 @@
     "subtitle2": "Fotografie ist ein Hobby, das meine künstlerische und technische Vision nährt.",
     "series": "Serie",
     "date": "Datum",
-    "city": "Stadt"
+    "city": "Stadt",
+    "camera": "Kamera"
   },
   "AboutPage": {
     "title": "Renaud Fradin",
@@ -18,7 +19,8 @@
     "linkedin": "LinkedIn",
     "github": "GitHub",
     "portfolio": "Portfolio",
-    "legal": "Rechtliche Hinweise"
+    "legal": "Rechtliche Hinweise",
+    "children": "Kontaktieren Sie mich : renaudfradin@gmail.com"
   },
   "NotFoundPage": {
     "title": "Seite nicht gefunden",

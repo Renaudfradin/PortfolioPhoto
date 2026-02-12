@@ -3,9 +3,10 @@ type Props = {
   title: string;
   subtitle: string;
   subtitle2?: string;
+  children2?: string;
 };
 
-export async function Header({ title, subtitle, subtitle2, children }: Props) {
+export async function Header({ title, subtitle, subtitle2, children, children2 }: Props) {
   return (
     <>
       <div
@@ -24,6 +25,11 @@ export async function Header({ title, subtitle, subtitle2, children }: Props) {
             {subtitle2 && (
               <p className="text-xl py-2 text-muted-foreground leading-10">
                 {subtitle2}
+              </p>
+            )}
+            {children2 && (
+              <p className="text-xl py-2 text-muted-foreground leading-10">
+                {children2}
               </p>
             )}
           </div>

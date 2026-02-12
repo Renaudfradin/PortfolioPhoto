@@ -9,7 +9,8 @@
     "subtitle2": "Фотография — это хобби, которое питает мое художественное и техническое видение.",
     "series": "Серия",
     "date": "Дата",
-    "city": "Город"
+    "city": "Город",
+    "camera": "Камера"
   },
   "AboutPage": {
     "title": "Renaud Fradin",
@@ -18,7 +19,8 @@
     "linkedin": "LinkedIn",
     "github": "GitHub",
     "portfolio": "Портфель",
-    "legal": "Правовая информация"
+    "legal": "Правовая информация",
+    "children": "Свяжитесь со мной : renaudfradin@gmail.com"
   },
   "NotFoundPage": {
     "title": "Страница не найдена",

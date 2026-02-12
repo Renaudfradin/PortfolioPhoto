@@ -28,6 +28,7 @@ export default async function About() {
         title={t('title')}
         subtitle={t('subtitle')}
         subtitle2={t('subtitle2')}
+        children2={t('children')}
       ></Header>
       <div className="text-center space-y-4">
         <div className="flex justify-center gap-6 mt-6">
@@ -52,7 +53,7 @@ export default async function About() {
           >
             {t('portfolio')}
           </Link>
-           <Link
+          <Link
             href={`/${locale}/legal`}
             className="text-muted-foreground hover:text-foreground transition-colors"
           >
