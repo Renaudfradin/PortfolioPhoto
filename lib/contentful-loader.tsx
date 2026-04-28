@@ -1,4 +1,3 @@
-// Docs: https://www.contentful.com/developers/docs/references/images-api/
 'use client';
 import { ImageLoaderProps } from 'next/image';
 
