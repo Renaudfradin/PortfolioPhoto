@@ -1,10 +1,10 @@
-import ImageContainer from '@/components/image-container';
 import AnimationWrapper from '@/components/ui/animation-wrapper';
 import { Header } from '@/components/ui/header-on-page';
 import { Metadata } from 'next';
 import { callApi } from '@/lib/api';
 import { getTranslations } from 'next-intl/server';
 import type { PhotographieType } from '@/lib/types/photography';
+import PhotographyGallery from '@/components/photography-gallery';
 
 export const dynamic = 'force-dynamic';
 
@@ -56,11 +56,7 @@ export default async function Photography() {
       <div>
         <Header title={t('title')} subtitle={t('subtitle')} />
         <section className="py-24 px-6">
-          <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
-            {photos.map((photo, index) => (
-              <ImageContainer key={index} photo={photo} index={index} />
-            ))}
-          </div>
+          <PhotographyGallery photos={photos} />
         </section>
       </div>
     </AnimationWrapper>

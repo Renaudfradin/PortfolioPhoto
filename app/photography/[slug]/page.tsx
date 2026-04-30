@@ -100,25 +100,33 @@ export default async function Photographie({ params }: Props) {
                   <div className="space-y-2 text-muted-foreground">
                     {photo.series ? (
                       <p>
-                        <span className="text-muted-foreground">{t('series')}:</span>{' '}
+                        <span className="text-muted-foreground">
+                          {t('series')}:
+                        </span>{' '}
                         {photo.series}mm
                       </p>
                     ) : null}
                     {photo.date ? (
                       <p>
-                        <span className="text-muted-foreground">{t('date')}:</span>{' '}
+                        <span className="text-muted-foreground">
+                          {t('date')}:
+                        </span>{' '}
                         {photo.date}
                       </p>
                     ) : null}
                     {photo.city ? (
                       <p>
-                        <span className="text-muted-foreground">{t('city')}:</span>{' '}
+                        <span className="text-muted-foreground">
+                          {t('city')}:
+                        </span>{' '}
                         {photo.city}
                       </p>
                     ) : null}
                     {photo.camera_name ? (
                       <p>
-                        <span className="text-muted-foreground">{t('camera')}:</span>{' '}
+                        <span className="text-muted-foreground">
+                          {t('camera')}:
+                        </span>{' '}
                         {photo.camera_name}
                       </p>
                     ) : null}

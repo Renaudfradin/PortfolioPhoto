@@ -13,13 +13,13 @@ function extractArticle(data: unknown): Article | null {
   if (data && typeof data === 'object') {
     const record = data as Record<string, unknown>;
     const candidate =
-      record.data ??
-      record.article ??
-      record.item ??
-      record.result ??
-      record;
+      record.data ?? record.article ?? record.item ?? record.result ?? record;
 
-    if (candidate && typeof candidate === 'object' && !Array.isArray(candidate)) {
+    if (
+      candidate &&
+      typeof candidate === 'object' &&
+      !Array.isArray(candidate)
+    ) {
       return candidate as Article;
     }
   }
@@ -27,9 +27,7 @@ function extractArticle(data: unknown): Article | null {
   return null;
 }
 
-export async function generateMetadata(
-  { params }: Props,
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const data = await callApi<unknown>(`/api/article/${slug}`);
   const article = extractArticle(data);
@@ -44,7 +42,9 @@ export async function generateMetadata(
   const description =
     article.description ??
     article.excerpt ??
-    (typeof article.content === 'string' ? article.content.slice(0, 160) : undefined);
+    (typeof article.content === 'string'
+      ? article.content.slice(0, 160)
+      : undefined);
 
   return {
     title: `${title} - Blog`,
