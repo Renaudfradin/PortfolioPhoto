@@ -22,6 +22,7 @@ export default function MenuElements({
 
   const navigation = [
     { name: t('Photographie'), href: `/${locale}/photography` },
+    { name: t('Blog'), href: `/${locale}/blog` },
     { name: t('About'), href: `/${locale}/about` },
   ];
   return (

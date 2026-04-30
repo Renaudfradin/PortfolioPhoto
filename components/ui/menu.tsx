@@ -69,6 +69,7 @@ export default function Menu() {
             <option value="es">ES</option>
             <option value="de">DE</option>
             <option value="ru">RU</option>
+            <option value="kg">KG</option>
           </select>
           <ThemeToggle />
         </div>
@@ -125,6 +126,7 @@ export default function Menu() {
                   <option value="es">ES</option>
                   <option value="de">DE</option>
                   <option value="ru">RU</option>
+                  <option value="kg">KG</option>
                 </select>
                 <ThemeToggle />
               </div>

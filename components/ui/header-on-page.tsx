@@ -6,7 +6,13 @@ type Props = {
   children2?: string;
 };
 
-export async function Header({ title, subtitle, subtitle2, children, children2 }: Props) {
+export async function Header({
+  title,
+  subtitle,
+  subtitle2,
+  children,
+  children2,
+}: Props) {
   return (
     <>
       <div
