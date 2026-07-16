@@ -7,7 +7,7 @@ export default createMiddleware({
   localePrefix,
 });
 
-// Appliquer le middleware à toutes les routes applicatives
+// Skip Next internals, static files, and API routes (e.g. /api/revalidate)
 export const config = {
-  matcher: ['/((?!_next|.*\\..*).*)'],
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)'],
 };

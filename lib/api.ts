@@ -13,6 +13,12 @@ export interface CallApiOptions {
   timeout?: number;
   enableRetry?: boolean;
   enablePerformanceLog?: boolean;
+  /** Bypass Next.js Data Cache (useful for frequently updated content). */
+  cache?: RequestCache;
+  /** ISR window in seconds. Use false with cache:'no-store' to disable. */
+  revalidate?: number | false;
+  /** Extra cache tags for on-demand revalidation via /api/revalidate */
+  tags?: string[];
 }
 
 // Fonction avec timeout
@@ -41,6 +47,7 @@ export async function callApi<T>(
   endpoint: string,
   options: CallApiOptions = {},
 ): Promise<T> {
+  const isDev = process.env.NODE_ENV === 'development';
   const {
     method = 'GET',
     body,
@@ -48,6 +55,10 @@ export async function callApi<T>(
     timeout = PERFORMANCE_CONFIG.TIMEOUTS.DEFAULT,
     enableRetry = true,
     enablePerformanceLog = true,
+    // In local dev, always fetch fresh API data so CMS edits show up immediately.
+    cache = isDev ? 'no-store' : undefined,
+    revalidate = isDev ? false : 3600,
+    tags,
     ...rest
   } = options;
 
@@ -60,19 +71,29 @@ export async function callApi<T>(
     }
 
     const url = `${baseUrl}${endpoint}`;
+    const shouldBypassCache = cache === 'no-store' || revalidate === false;
+    // Prefer semantic tags when provided; fall back to endpoint tag.
+    const cacheTags = Array.from(
+      new Set((tags?.length ? tags : [endpoint]).filter(Boolean)),
+    );
     const fetchOptions: RequestInit = {
       method,
       headers: {
         'Content-Type': 'application/json',
         ...(headers || {}),
       },
-      // Ajout du cache pour les requêtes GET
-      ...(method === 'GET' && {
-        next: {
-          revalidate: 300, // Cache pendant 5 minutes
-          tags: [endpoint], // Tag pour invalidation sélective
-        },
-      }),
+      ...(cache ? { cache } : {}),
+      ...(method === 'GET' &&
+        !shouldBypassCache && {
+          next: {
+            revalidate: typeof revalidate === 'number' ? revalidate : 300,
+            tags: cacheTags,
+          },
+        }),
+      ...(method === 'GET' &&
+        shouldBypassCache && {
+          cache: 'no-store' as RequestCache,
+        }),
       ...rest,
     };
 

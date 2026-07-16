@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getLocale } from 'next-intl/server';
 import { callApi } from '@/lib/api';
+import { CACHE_TAGS } from '@/lib/cache-tags';
 import type { Article, ArticlesApiResponse } from '@/lib/types/article';
 
 export const metadata: Metadata = {
@@ -46,8 +47,17 @@ function extractArticles(data: ArticlesApiResponse): Article[] {
 
 export default async function Blog() {
   const locale = await getLocale();
-  const data = await callApi<ArticlesApiResponse>('/api/articles');
-  const articles = extractArticles(data);
+  let articles: Article[] = [];
+  let apiError = false;
+
+  try {
+    const data = await callApi<ArticlesApiResponse>('/api/articles', {
+      tags: [CACHE_TAGS.articles],
+    });
+    articles = extractArticles(data);
+  } catch {
+    apiError = true;
+  }
 
   return (
     <div className="container mx-auto px-4 py-10">
@@ -91,7 +101,13 @@ export default async function Blog() {
           );
         })}
 
-        {articles.length === 0 ? (
+        {apiError ? (
+          <div className="text-sm text-muted-foreground">
+            Impossible de charger les articles. Vérifiez que l&apos;API est
+            démarrée ({process.env.NEXT_PUBLIC_API_BASE_URL}).
+          </div>
+        ) : null}
+        {!apiError && articles.length === 0 ? (
           <div className="text-sm text-muted-foreground">Aucun article.</div>
         ) : null}
       </div>
