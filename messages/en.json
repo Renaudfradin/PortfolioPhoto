@@ -33,6 +33,13 @@
     "Blog": "Blog",
     "About": "About"
   },
+  "BlogPage": {
+    "title": "Blog",
+    "heading": "Blog",
+    "description": "Articles and notes by Renaud Fradin — photography, development, and craft.",
+    "empty": "No articles yet.",
+    "error": "Unable to load articles. Check that the API is running."
+  },
   "LegalPage": {
     "title": "Legal notices",
     "subtitle": "Legal information relating to the website and its operation.",

@@ -33,6 +33,13 @@
     "Blog": "Blog",
     "About": "Acerca de mí"
   },
+  "BlogPage": {
+    "title": "Blog",
+    "heading": "Blog",
+    "description": "Artículos y notas de Renaud Fradin — fotografía, desarrollo y oficio.",
+    "empty": "No hay artículos.",
+    "error": "No se pueden cargar los artículos. Comprueba que la API está en marcha."
+  },
   "LegalPage": {
     "title": "Información legal",
     "subtitle": "Información legal relativa al sitio y su funcionamiento.",

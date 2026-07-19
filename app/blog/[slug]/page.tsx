@@ -2,74 +2,35 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { callApi } from '@/lib/api';
-import { articleCacheTags } from '@/lib/cache-tags';
+import {
+  articleSlugs,
+  blocksToPlainText,
+  extractArticle,
+  extractArticles,
+  normalizeBlocks,
+} from '@/lib/articles';
+import { articleCacheTags, CACHE_TAGS } from '@/lib/cache-tags';
+import { defaultLocale, locales } from '@/i18n';
 import { sanitizeHtml } from '@/lib/sanitize-html';
+import {
+  buildArticleJsonLd,
+  buildArticleMetadata,
+  isLocale,
+} from '@/lib/seo';
 import type {
   Article,
   ArticleApiResponse,
   ArticleContentBlock,
+  ArticlesApiResponse,
 } from '@/lib/types/article';
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale?: string }>;
 };
 
-const HEADING_TAGS = new Set(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']);
-
-function extractArticle(data: ArticleApiResponse | null): Article | null {
-  if (!data) return null;
-
-  if (typeof data === 'object') {
-    const record = data as Record<string, unknown>;
-    const candidate =
-      record.data ?? record.article ?? record.item ?? record.result ?? record;
-
-    if (
-      candidate &&
-      typeof candidate === 'object' &&
-      !Array.isArray(candidate)
-    ) {
-      return candidate as Article;
-    }
-  }
-
-  return null;
-}
-
-function stripHtml(html: string): string {
-  return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
-}
-
-function normalizeBlocks(
-  content: Article['content'],
-): ArticleContentBlock[] {
-  if (!content) return [];
-
-  if (typeof content === 'string') {
-    return [{ type: 'paragraph', content }];
-  }
-
-  if (!Array.isArray(content)) return [];
-
-  return content.filter(
-    (block): block is ArticleContentBlock =>
-      !!block &&
-      typeof block === 'object' &&
-      typeof block.content === 'string' &&
-      block.content.length > 0,
-  );
-}
-
-function blocksToPlainText(blocks: ArticleContentBlock[]): string {
-  return blocks
-    .map((block) =>
-      block.type === 'paragraph' || block.type === 'heading'
-        ? stripHtml(block.content)
-        : block.content,
-    )
-    .join(' ')
-    .replace(/\s+/g, ' ')
-    .trim();
+function resolveLocale(locale?: string): string {
+  if (locale && isLocale(locale)) return locale;
+  return defaultLocale;
 }
 
 function ArticleContentBlocks({ blocks }: { blocks: ArticleContentBlock[] }) {
@@ -81,11 +42,13 @@ function ArticleContentBlocks({ blocks }: { blocks: ArticleContentBlock[] }) {
         const key = `${block.type}-${index}`;
 
         if (block.type === 'heading') {
-          const level =
-            typeof block.level === 'string' && HEADING_TAGS.has(block.level)
-              ? block.level
-              : 'h2';
-          const HeadingTag = level as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+          // Keep a single page-level <h1>; downgrade CMS h1 blocks.
+          const rawLevel =
+            typeof block.level === 'string' ? block.level : 'h2';
+          const level = rawLevel === 'h1' ? 'h2' : rawLevel;
+          const HeadingTag = (
+            ['h2', 'h3', 'h4', 'h5', 'h6'].includes(level) ? level : 'h2'
+          ) as 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
           return <HeadingTag key={key}>{block.content}</HeadingTag>;
         }
@@ -107,7 +70,6 @@ function ArticleContentBlocks({ blocks }: { blocks: ArticleContentBlock[] }) {
           );
         }
 
-        // Ignore unknown block types instead of rendering raw HTML
         return null;
       })}
     </div>
@@ -115,7 +77,8 @@ function ArticleContentBlocks({ blocks }: { blocks: ArticleContentBlock[] }) {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale: localeParam } = await params;
+  const locale = resolveLocale(localeParam);
 
   try {
     const data = await callApi<ArticleApiResponse>(`/api/article/${slug}`, {
@@ -132,22 +95,42 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const plainText = blocksToPlainText(blocks).slice(0, 160);
     const description =
       article.description ?? article.excerpt ?? (plainText || undefined);
+    const publishedTime = article.date ?? article.created_at;
+    const modifiedTime = article.updated_at ?? publishedTime;
 
-    return {
-      title: `${title} - Blog`,
+    return buildArticleMetadata({
+      title,
       description,
-    };
+      slug,
+      locale,
+      image: article.image,
+      publishedTime,
+      modifiedTime,
+    });
   } catch {
     return { title: 'Article non trouvé' };
   }
 }
 
 export async function generateStaticParams() {
-  return [];
+  try {
+    const data = await callApi<ArticlesApiResponse>('/api/articles', {
+      tags: [CACHE_TAGS.articles],
+      enablePerformanceLog: false,
+    });
+    const slugs = articleSlugs(extractArticles(data));
+
+    return locales.flatMap((locale) =>
+      slugs.map((slug) => ({ locale, slug })),
+    );
+  } catch {
+    return [];
+  }
 }
 
 export default async function BlogSlug({ params }: Props) {
-  const { slug } = await params;
+  const { slug, locale: localeParam } = await params;
+  const locale = resolveLocale(localeParam);
   let article: Article | null = null;
 
   try {
@@ -165,18 +148,37 @@ export default async function BlogSlug({ params }: Props) {
 
   const title = article.title ?? slug;
   const date = article.date ?? article.created_at;
+  const modifiedTime = article.updated_at ?? date;
   const blocks = normalizeBlocks(article.content);
+  const plainText = blocksToPlainText(blocks).slice(0, 160);
+  const description =
+    article.description ?? article.excerpt ?? (plainText || undefined);
+  const jsonLd = buildArticleJsonLd({
+    title,
+    description,
+    slug,
+    locale,
+    image: article.image,
+    publishedTime: date,
+    modifiedTime,
+  });
 
   return (
     <div className="container mx-auto px-4 py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <h1 className="text-3xl font-bold tracking-tight">{title}</h1>
       {date ? (
         <div className="mt-2 text-sm text-muted-foreground">
-          {new Date(date).toLocaleDateString('fr-FR', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          })}
+          <time dateTime={date}>
+            {new Date(date).toLocaleDateString(locale, {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </time>
         </div>
       ) : null}
       {article.image ? (
