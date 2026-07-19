@@ -3,7 +3,13 @@ import createNextIntlPlugin from 'next-intl/plugin';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['api-folio.s3.fr-par.scw.cloud'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'api-folio.s3.fr-par.scw.cloud',
+        pathname: '/**',
+      },
+    ],
   },
 };
 

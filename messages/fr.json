@@ -33,6 +33,13 @@
     "Blog": "Blog",
     "About": "À propos"
   },
+  "BlogPage": {
+    "title": "Blog",
+    "heading": "Blog",
+    "description": "Articles et notes de Renaud Fradin — photographie, développement et regards sur le métier.",
+    "empty": "Aucun article.",
+    "error": "Impossible de charger les articles. Vérifiez que l'API est démarrée."
+  },
   "LegalPage": {
     "title": "Mentions légales",
     "subtitle": "Informations légales relatives au site et à son exploitation.",

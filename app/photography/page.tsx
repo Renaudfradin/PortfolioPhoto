@@ -49,14 +49,29 @@ function extractPhotos(data: unknown): PhotographieType[] {
 
 export default async function Photography() {
   const t = await getTranslations('PhotographyPage');
-  const data = await callApi<unknown>('/api/photographies');
-  const photos = extractPhotos(data);
+  let photos: PhotographieType[] = [];
+  let apiError = false;
+
+  try {
+    const data = await callApi<unknown>('/api/photographies');
+    photos = extractPhotos(data);
+  } catch {
+    apiError = true;
+  }
+
   return (
     <AnimationWrapper>
       <div>
         <Header title={t('title')} subtitle={t('subtitle')} />
         <section className="py-24 px-6">
-          <PhotographyGallery photos={photos} />
+          {apiError ? (
+            <p className="text-sm text-muted-foreground">
+              Impossible de charger les photos. Vérifiez que l&apos;API est
+              démarrée ({process.env.NEXT_PUBLIC_API_BASE_URL}).
+            </p>
+          ) : (
+            <PhotographyGallery photos={photos} />
+          )}
         </section>
       </div>
     </AnimationWrapper>

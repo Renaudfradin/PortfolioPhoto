@@ -1,57 +1,55 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getLocale } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import { callApi } from '@/lib/api';
+import { extractArticles } from '@/lib/articles';
+import { CACHE_TAGS } from '@/lib/cache-tags';
+import { buildBlogIndexMetadata, isLocale } from '@/lib/seo';
+import { defaultLocale } from '@/i18n';
 import type { Article, ArticlesApiResponse } from '@/lib/types/article';
 
-export const metadata: Metadata = {
-  title: 'Blog',
-  description:
-    'Blog Renaud Fradin - Développeur Full-Stack - Renaud Fradin Photo',
-  keywords: [
-    'Renaud Fradin',
-    'Développeur Full-Stack',
-    'Portfolio',
-    'Renaud Fradin Photo',
-    'Blog',
-  ],
-  icons: {
-    icon: '/favicon.ico',
-  },
+type Props = {
+  params: Promise<{ locale?: string }>;
 };
 
-function extractArticles(data: ArticlesApiResponse): Article[] {
-  if (Array.isArray(data)) {
-    return data;
-  }
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale: localeParam } = await params;
+  const locale = localeParam && isLocale(localeParam)
+    ? localeParam
+    : (await getLocale().catch(() => defaultLocale));
+  const t = await getTranslations({ locale, namespace: 'BlogPage' });
 
-  if (data && typeof data === 'object') {
-    const record = data as Record<string, unknown>;
-    const candidates = [
-      record.data,
-      record.articles,
-      record.items,
-      record.results,
-    ];
-
-    const arr = candidates.find(Array.isArray);
-    if (arr && Array.isArray(arr)) {
-      return arr as Article[];
-    }
-  }
-
-  return [];
+  return buildBlogIndexMetadata({
+    title: t('title'),
+    description: t('description'),
+    locale,
+  });
 }
 
-export default async function Blog() {
-  const locale = await getLocale();
-  const data = await callApi<ArticlesApiResponse>('/api/articles');
-  const articles = extractArticles(data);
+export default async function Blog({ params }: Props) {
+  const { locale: localeParam } = await params;
+  const locale =
+    localeParam && isLocale(localeParam)
+      ? localeParam
+      : await getLocale();
+  const t = await getTranslations({ locale, namespace: 'BlogPage' });
+  let articles: Article[] = [];
+  let apiError = false;
+
+  try {
+    const data = await callApi<ArticlesApiResponse>('/api/articles', {
+      tags: [CACHE_TAGS.articles],
+    });
+    articles = extractArticles(data);
+  } catch {
+    apiError = true;
+  }
 
   return (
     <div className="container mx-auto px-4 py-10">
-      <div className="mt-6 grid grid-cols-1 gap-8 md:grid-cols-2">
+      <h1 className="text-3xl font-bold tracking-tight">{t('heading')}</h1>
+      <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {articles.map((article, index) => {
           const slug = article.slug;
           if (!slug) return null;
@@ -73,14 +71,18 @@ export default async function Blog() {
                       alt={title}
                       fill
                       className="object-contain"
-                      sizes="(max-width: 768px) 100vw, 50vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   ) : null}
                 </div>
               </Link>
 
               <div className="space-y-2">
-                <h2 className="text-lg font-semibold leading-snug">{title}</h2>
+                <h2 className="text-lg font-semibold leading-snug">
+                  <Link href={href} className="hover:underline">
+                    {title}
+                  </Link>
+                </h2>
                 {article.excerpt ? (
                   <p className="text-sm text-muted-foreground">
                     {article.excerpt}
@@ -91,8 +93,11 @@ export default async function Blog() {
           );
         })}
 
-        {articles.length === 0 ? (
-          <div className="text-sm text-muted-foreground">Aucun article.</div>
+        {apiError ? (
+          <div className="text-sm text-muted-foreground">{t('error')}</div>
+        ) : null}
+        {!apiError && articles.length === 0 ? (
+          <div className="text-sm text-muted-foreground">{t('empty')}</div>
         ) : null}
       </div>
     </div>
