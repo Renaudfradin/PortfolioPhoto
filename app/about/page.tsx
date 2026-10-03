@@ -2,28 +2,50 @@ import AnimationWrapper from '@/components/ui/animation-wrapper';
 import { Header } from '@/components/ui/header-on-page';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { getLocale, getTranslations } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
+import {
+  buildPageMetadata,
+  buildPersonJsonLd,
+  getInstagramUrl,
+  GITHUB_URL,
+  LINKEDIN_URL,
+  resolveLocale,
+} from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'About',
-  description:
-    'About Renaud Fradin - Développeur Full-Stack - Renaud Fradin Photo',
-  keywords: [
-    'Renaud Fradin',
-    'Développeur Full-Stack',
-    'Portfolio',
-    'Renaud Fradin Photo',
-  ],
-  icons: {
-    icon: '/favicon.ico',
-  },
+type Props = {
+  params: Promise<{ locale?: string }>;
 };
 
-export default async function About() {
-  const t = await getTranslations('AboutPage');
-  const locale = await getLocale();
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale: localeParam } = await params;
+  const locale = resolveLocale(localeParam);
+  const t = await getTranslations({ locale, namespace: 'Seo' });
+
+  return buildPageMetadata({
+    path: '/about',
+    locale,
+    title: t('aboutTitle'),
+    description: t('aboutDescription'),
+    keywords: t('aboutKeywords').split(',').map((k) => k.trim()),
+  });
+}
+
+export default async function About({ params }: Props) {
+  const { locale: localeParam } = await params;
+  const locale = resolveLocale(localeParam);
+  const t = await getTranslations({ locale, namespace: 'AboutPage' });
+  const tSeo = await getTranslations({ locale, namespace: 'Seo' });
+  const jsonLd = buildPersonJsonLd({
+    locale,
+    description: tSeo('aboutDescription'),
+  });
+
   return (
     <AnimationWrapper>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header
         title={t('title')}
         subtitle={t('subtitle')}
@@ -31,27 +53,36 @@ export default async function About() {
         children2={t('children')}
       ></Header>
       <div className="text-center space-y-4">
-        <div className="flex justify-center gap-6 mt-6">
+        <div className="flex flex-wrap justify-center gap-6 mt-6">
           <Link
-            href="https://www.linkedin.com/in/renaudfradin/"
+            href={LINKEDIN_URL}
             className="text-muted-foreground hover:text-foreground transition-colors"
             target="_blank"
+            rel="noopener noreferrer"
           >
             {t('linkedin')}
           </Link>
           <Link
-            href="https://github.com/Renaudfradin"
+            href={GITHUB_URL}
             className="text-muted-foreground hover:text-foreground transition-colors"
             target="_blank"
+            rel="noopener noreferrer"
           >
             {t('github')}
           </Link>
           <Link
-            href="https://renaudfradin.vercel.app/"
+            href={getInstagramUrl()}
             className="text-muted-foreground hover:text-foreground transition-colors"
             target="_blank"
+            rel="me noopener noreferrer"
           >
-            {t('portfolio')}
+            {t('instagram')}
+          </Link>
+          <Link
+            href={`/${locale}/photography`}
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            {t('gallery')}
           </Link>
           <Link
             href={`/${locale}/legal`}

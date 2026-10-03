@@ -2,49 +2,30 @@ import AnimationWrapper from '@/components/ui/animation-wrapper';
 import { Header } from '@/components/ui/header-on-page';
 import { Metadata } from 'next';
 import { callApi } from '@/lib/api';
+import { extractPhotos } from '@/lib/photography';
+import { buildPageMetadata, resolveLocale } from '@/lib/seo';
 import { getTranslations } from 'next-intl/server';
 import type { PhotographieType } from '@/lib/types/photography';
 import PhotographyGallery from '@/components/photography-gallery';
 
 export const dynamic = 'force-dynamic';
 
-export const metadata: Metadata = {
-  title: 'Photography',
-  description:
-    'Photography Renaud Fradin - Développeur Full-Stack - Renaud Fradin Photo',
-  keywords: [
-    'Renaud Fradin',
-    'Développeur Full-Stack',
-    'Portfolio',
-    'Renaud Fradin Photo',
-  ],
-  icons: {
-    icon: '/favicon.ico',
-  },
+type Props = {
+  params: Promise<{ locale?: string }>;
 };
 
-function extractPhotos(data: unknown): PhotographieType[] {
-  if (Array.isArray(data)) {
-    return data as PhotographieType[];
-  }
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale: localeParam } = await params;
+  const locale = resolveLocale(localeParam);
+  const t = await getTranslations({ locale, namespace: 'Seo' });
 
-  if (data && typeof data === 'object') {
-    const record = data as Record<string, unknown>;
-    const candidates = [
-      record.data,
-      record.photographies,
-      record.photography,
-      record.items,
-      record.results,
-    ];
-
-    const arr = candidates.find(Array.isArray);
-    if (arr && Array.isArray(arr)) {
-      return arr as PhotographieType[];
-    }
-  }
-
-  return [];
+  return buildPageMetadata({
+    path: '/photography',
+    locale,
+    title: t('photographyTitle'),
+    description: t('photographyDescription'),
+    keywords: t('photographyKeywords').split(',').map((k) => k.trim()),
+  });
 }
 
 export default async function Photography() {

@@ -1,7 +1,22 @@
 {
   "IndexPage": {
     "tagline": "Jeder Blick offenbart ein einzigartiges Universum.",
-    "quote": "Den Kern des Augenblicks einfangen, das Unsichtbare enthüllen."
+    "quote": "Den Kern des Augenblicks einfangen, das Unsichtbare enthüllen.",
+    "seoIntro": "Leidenschaftlicher Analogfotograf in Frankreich: Galerie mit Porträts und Reisebildern sowie ein Blog über Fotografie auf Film."
+  },
+  "Seo": {
+    "homeTitle": "Renaud Fradin — Fotograf | Galerie & Analogfotografie-Blog",
+    "homeDescription": "Portfolio von Renaud Fradin, Fotograf in Frankreich: Galerie, Analog-Blog (Minolta X-700, Zenit E) und Notizen zur Filmfotografie.",
+    "homeKeywords": "Renaud Fradin,Fotograf,Analogfotografie,Minolta X-700,Zenit E,Fotogalerie,Fotoblog,Frankreich",
+    "homeNavLabel": "Website-Bereiche",
+    "aboutTitle": "Über — Renaud Fradin, Fotograf",
+    "aboutDescription": "Renaud Fradin, Fotograf und Analog-Enthusiast in Frankreich. Galerie, technischer Blog und Kontakt.",
+    "aboutKeywords": "Renaud Fradin,Fotograf,Analogfotografie,Portfolio,Frankreich",
+    "photographyTitle": "Fotogalerie — Renaud Fradin",
+    "photographyDescription": "Fotogalerie von Renaud Fradin: Serien, Städte und Analogkameras. Bilder aus Frankreich und auf Reisen.",
+    "photographyKeywords": "Fotogalerie,Renaud Fradin,Analogfotografie,Portfolio",
+    "legalTitle": "Rechtliche Hinweise — Renaud Fradin",
+    "legalDescription": "Rechtliche Informationen zur Fotografie-Portfolio- und Blog-Website von Renaud Fradin."
   },
   "PhotographyPage": {
     "title": "Fotografie",
@@ -14,11 +29,12 @@
   },
   "AboutPage": {
     "title": "Renaud Fradin",
-    "subtitle": "Full-Stack-Entwickler mit Leidenschaft für die Entwicklung innovativer digitaler Erlebnisse",
-    "subtitle2": "Fotografie ist ein Hobby, das meine künstlerische und technische Vision nährt.",
+    "subtitle": "Fotograf mit Leidenschaft für Analogfotografie und Reisen—Ich teile Galerie und Blog über Filmfotografie in Frankreich.",
+    "subtitle2": "Handwerkliche Notizen: Entwickler am Tag, Fotograf in der freien Zeit.",
     "linkedin": "LinkedIn",
     "github": "GitHub",
-    "portfolio": "Portfolio",
+    "instagram": "Instagram",
+    "gallery": "Galerie",
     "legal": "Rechtliche Hinweise",
     "children": "Kontaktieren Sie mich : renaudfradin@gmail.com"
   },

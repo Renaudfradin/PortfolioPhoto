@@ -3,6 +3,7 @@ import { locales } from '@/i18n';
 import { callApi } from '@/lib/api';
 import { articleSlugs, extractArticles } from '@/lib/articles';
 import { CACHE_TAGS } from '@/lib/cache-tags';
+import { extractPhotos, photographySlugs } from '@/lib/photography';
 import { getSiteUrl } from '@/lib/seo';
 import type { ArticlesApiResponse } from '@/lib/types/article';
 
@@ -20,9 +21,21 @@ async function fetchArticleSlugs(): Promise<string[]> {
   }
 }
 
+async function fetchPhotographySlugs(): Promise<string[]> {
+  try {
+    const data = await callApi<unknown>('/api/photographies', {
+      enablePerformanceLog: false,
+    });
+    return photographySlugs(extractPhotos(data));
+  } catch {
+    return [];
+  }
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl = getSiteUrl();
-  const slugs = await fetchArticleSlugs();
+  const articleSlugList = await fetchArticleSlugs();
+  const photoSlugList = await fetchPhotographySlugs();
   const lastModified = new Date();
   const entries: MetadataRoute.Sitemap = [];
 
@@ -36,12 +49,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       });
     }
 
-    for (const slug of slugs) {
+    for (const slug of articleSlugList) {
       entries.push({
         url: `${siteUrl}/${locale}/blog/${slug}`,
         lastModified,
         changeFrequency: 'weekly',
         priority: 0.6,
+      });
+    }
+
+    for (const slug of photoSlugList) {
+      entries.push({
+        url: `${siteUrl}/${locale}/photography/${slug}`,
+        lastModified,
+        changeFrequency: 'monthly',
+        priority: 0.65,
       });
     }
   }

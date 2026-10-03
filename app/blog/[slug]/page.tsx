@@ -15,7 +15,7 @@ import { sanitizeHtml } from '@/lib/sanitize-html';
 import {
   buildArticleJsonLd,
   buildArticleMetadata,
-  isLocale,
+  resolveLocale,
 } from '@/lib/seo';
 import type {
   Article,
@@ -27,11 +27,6 @@ import type {
 type Props = {
   params: Promise<{ slug: string; locale?: string }>;
 };
-
-function resolveLocale(locale?: string): string {
-  if (locale && isLocale(locale)) return locale;
-  return defaultLocale;
-}
 
 function ArticleContentBlocks({ blocks }: { blocks: ArticleContentBlock[] }) {
   if (blocks.length === 0) return null;

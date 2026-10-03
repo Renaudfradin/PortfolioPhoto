@@ -1,42 +1,20 @@
 import Image from 'next/image';
-import { Metadata, ResolvingMetadata } from 'next';
+import { Metadata } from 'next';
 import AnimationWrapper from '@/components/ui/animation-wrapper';
 import { callApi } from '@/lib/api';
+import { extractPhoto } from '@/lib/photography';
+import { buildPhotoMetadata, resolveLocale } from '@/lib/seo';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
-import type { PhotographieType } from '@/lib/types/photography';
-
 export const dynamic = 'force-dynamic';
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale?: string }>;
 };
 
-function extractPhoto(data: unknown): PhotographieType | null {
-  if (!data || typeof data !== 'object' || Array.isArray(data)) {
-    return null;
-  }
-
-  const record = data as Record<string, unknown>;
-  const candidate =
-    record.data ??
-    record.photo ??
-    record.photography ??
-    record.item ??
-    record.result;
-
-  if (candidate && typeof candidate === 'object' && !Array.isArray(candidate)) {
-    return candidate as unknown as PhotographieType;
-  }
-
-  return record as unknown as PhotographieType;
-}
-
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
-  const { slug } = await params;
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug, locale: localeParam } = await params;
+  const locale = resolveLocale(localeParam);
   const data = await callApi<unknown>(`/api/photography/${slug}`);
   const photo = extractPhoto(data);
   const name = photo?.name ?? 'Photo';
@@ -49,13 +27,18 @@ export async function generateMetadata(
     };
   }
 
-  return {
-    title: `${name} - Renaud Fradin Photography`,
-    description: `${name}${series ? ` - Série ${series}` : ''}${date ? ` (${date})` : ''}`,
+  const description = `${name}${series ? ` — ${series}` : ''}${date ? ` (${date})` : ''} — Renaud Fradin`;
+
+  return buildPhotoMetadata({
+    name,
+    description,
+    slug,
+    locale,
+    image: photo.image,
     keywords: ['Renaud Fradin', 'Photography', 'Photographie', series].filter(
       (k): k is string => typeof k === 'string' && k.length > 0,
     ),
-  };
+  });
 }
 
 export async function generateStaticParams() {
@@ -96,7 +79,6 @@ export default async function Photographie({ params }: Props) {
 
               <div className="lg:col-span-1 space-y-6">
                 <div>
-                  {/* <h1 className="text-2xl font-bold mb-2">{name}</h1> */}
                   <div className="space-y-2 text-muted-foreground">
                     {photo.series ? (
                       <p>
