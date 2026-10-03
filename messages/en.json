@@ -1,7 +1,22 @@
 {
   "IndexPage": {
     "tagline": "Each glance reveals a unique universe.",
-    "quote": "To capture the essence of the moment, to reveal the invisible."
+    "quote": "To capture the essence of the moment, to reveal the invisible.",
+    "seoIntro": "Film photography enthusiast based in France: gallery of portraits and travel work, plus a blog on shooting with film. Explore my images and articles to sharpen your eye."
+  },
+  "Seo": {
+    "homeTitle": "Renaud Fradin — Photographer | Gallery & film photography blog",
+    "homeDescription": "Portfolio of Renaud Fradin, photographer in France: gallery, analog blog (Minolta X-700, Zenit E), and notes on film photography.",
+    "homeKeywords": "Renaud Fradin,photographer,film photography,Minolta X-700,Zenit E,photo gallery,photography blog,France",
+    "homeNavLabel": "Site sections",
+    "aboutTitle": "About — Renaud Fradin, photographer",
+    "aboutDescription": "Renaud Fradin, photographer and film photography enthusiast in France. Gallery, technical blog, and contact to talk about photography.",
+    "aboutKeywords": "Renaud Fradin,photographer,film photography,portfolio,France",
+    "photographyTitle": "Photo gallery — Renaud Fradin",
+    "photographyDescription": "Photography gallery by Renaud Fradin: series, cities, and analog cameras. Images from France and travels.",
+    "photographyKeywords": "photo gallery,Renaud Fradin,film photography,portfolio",
+    "legalTitle": "Legal notices — Renaud Fradin",
+    "legalDescription": "Legal information for Renaud Fradin's photography portfolio and blog website."
   },
   "PhotographyPage": {
     "title": "Photography",
@@ -10,15 +25,17 @@
     "series": "Series",
     "date": "Date",
     "city": "City",
-    "camera": "Camera"
+    "camera": "Camera",
+    "error": "Unable to load photos. Check that the API is running."
   },
   "AboutPage": {
     "title": "Renaud Fradin",
-    "subtitle": "Full-Stack developer passionate about creating innovative digital experiences",
-    "subtitle2": "Photography is a hobby that feeds my artistic and technical vision",
+    "subtitle": "Photographer passionate about film and travel—I share my gallery and a blog on analog photography in France.",
+    "subtitle2": "Notes on the craft: developer by day, photographer whenever time allows.",
     "linkedin": "LinkedIn",
     "github": "GitHub",
-    "portfolio": "Portfolio",
+    "instagram": "Instagram",
+    "gallery": "Gallery",
     "legal": "Legal notices",
     "children": "Contact me : renaudfradin@gmail.com"
   },

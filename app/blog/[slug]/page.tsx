@@ -15,7 +15,8 @@ import { sanitizeHtml } from '@/lib/sanitize-html';
 import {
   buildArticleJsonLd,
   buildArticleMetadata,
-  isLocale,
+  resolveLocale,
+  toIntlLocale,
 } from '@/lib/seo';
 import type {
   Article,
@@ -27,11 +28,6 @@ import type {
 type Props = {
   params: Promise<{ slug: string; locale?: string }>;
 };
-
-function resolveLocale(locale?: string): string {
-  if (locale && isLocale(locale)) return locale;
-  return defaultLocale;
-}
 
 function ArticleContentBlocks({ blocks }: { blocks: ArticleContentBlock[] }) {
   if (blocks.length === 0) return null;
@@ -173,7 +169,7 @@ export default async function BlogSlug({ params }: Props) {
       {date ? (
         <div className="mt-2 text-sm text-muted-foreground">
           <time dateTime={date}>
-            {new Date(date).toLocaleDateString(locale, {
+            {new Date(date).toLocaleDateString(toIntlLocale(locale), {
               year: 'numeric',
               month: 'long',
               day: 'numeric',

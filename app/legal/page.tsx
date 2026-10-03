@@ -1,13 +1,25 @@
 import AnimationWrapper from '@/components/ui/animation-wrapper';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { buildPageMetadata, resolveLocale } from '@/lib/seo';
 import { getTranslations } from 'next-intl/server';
 
-export const metadata: Metadata = {
-  title: 'Renaud Fradin - Mentions légales',
-  description:
-    'Explorez le monde à travers un regard photographique unique. Portfolio de Renaud Fradin',
+type Props = {
+  params: Promise<{ locale?: string }>;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale: localeParam } = await params;
+  const locale = resolveLocale(localeParam);
+  const t = await getTranslations({ locale, namespace: 'Seo' });
+
+  return buildPageMetadata({
+    path: '/legal',
+    locale,
+    title: t('legalTitle'),
+    description: t('legalDescription'),
+  });
+}
 
 export default async function Legal() {
   const t = await getTranslations('LegalPage');

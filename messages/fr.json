@@ -1,7 +1,22 @@
 {
   "IndexPage": {
     "tagline": "Chaque regard révèle un univers unique.",
-    "quote": "Capturer l'essence de l'instant, révéler l'invisible."
+    "quote": "Capturer l'essence de l'instant, révéler l'invisible.",
+    "seoIntro": "Photographe passionné d'argentique en France : galerie de portraits et de voyages, blog sur la photo film. Découvrez mes images et mes articles pour nourrir votre regard."
+  },
+  "Seo": {
+    "homeTitle": "Renaud Fradin — Photographe | Galerie & blog argentique",
+    "homeDescription": "Portfolio de Renaud Fradin, photographe en France : galerie, blog argentique (Minolta X-700, Zenit E) et regards sur la photo film.",
+    "homeKeywords": "Renaud Fradin,photographe,photo argentique,Minolta X-700,Zenit E,galerie photo,blog photographie,France",
+    "homeNavLabel": "Sections du site",
+    "aboutTitle": "À propos — Renaud Fradin, photographe",
+    "aboutDescription": "Renaud Fradin, photographe et passionné d'argentique en France. Galerie, blog technique et contact pour échanger autour de la photo.",
+    "aboutKeywords": "Renaud Fradin,photographe,argentique,portfolio,France",
+    "photographyTitle": "Galerie photo — Renaud Fradin",
+    "photographyDescription": "Galerie photographique de Renaud Fradin : séries, villes et appareils argentiques. Images en France et en voyage.",
+    "photographyKeywords": "galerie photo,Renaud Fradin,photographie argentique,portfolio",
+    "legalTitle": "Mentions légales — Renaud Fradin",
+    "legalDescription": "Mentions légales du site portfolio et blog photographique de Renaud Fradin."
   },
   "PhotographyPage": {
     "title": "Photographie",
@@ -10,15 +25,17 @@
     "series": "Série",
     "date": "Date",
     "city": "Ville",
-    "camera": "Appareil photo"
+    "camera": "Appareil photo",
+    "error": "Impossible de charger les photos. Vérifiez que l'API est démarrée."
   },
   "AboutPage": {
     "title": "Renaud Fradin",
-    "subtitle": "Développeur Full-Stack passionné par la création d'expériences numériques innovantes",
-    "subtitle2": "La photographie est un hobbie qui nourrit mon regard artistique et technique",
+    "subtitle": "Photographe passionné d'argentique et de voyages, je partage ma galerie et un blog sur la photo film en France.",
+    "subtitle2": "Regards sur le métier : développeur le jour, photographe à chaque instant libre.",
     "linkedin": "LinkedIn",
     "github": "GitHub",
-    "portfolio": "Portfolio",
+    "instagram": "Instagram",
+    "gallery": "Galerie",
     "legal": "Mentions Légales",
     "children": "Me contacter : renaudfradin@gmail.com"
   },

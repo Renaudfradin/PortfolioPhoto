@@ -1,7 +1,22 @@
 {
   "IndexPage": {
     "tagline": "Cada mirada revela un universo único.",
-    "quote": "Capturar la esencia del momento, revelar lo invisible."
+    "quote": "Capturar la esencia del momento, revelar lo invisible.",
+    "seoIntro": "Fotógrafo apasionado por la fotografía analógica en Francia: galería de retratos y viajes, y un blog sobre la foto en película. Descubre mis imágenes y artículos."
+  },
+  "Seo": {
+    "homeTitle": "Renaud Fradin — Fotógrafo | Galería y blog de fotografía analógica",
+    "homeDescription": "Portfolio de Renaud Fradin, fotógrafo en Francia: galería, blog analógico (Minolta X-700, Zenit E) y reflexiones sobre la fotografía en película.",
+    "homeKeywords": "Renaud Fradin,fotógrafo,fotografía analógica,Minolta X-700,Zenit E,galería,blog fotografía,Francia",
+    "homeNavLabel": "Secciones del sitio",
+    "aboutTitle": "Acerca de — Renaud Fradin, fotógrafo",
+    "aboutDescription": "Renaud Fradin, fotógrafo y apasionado de la analógica en Francia. Galería, blog técnico y contacto para hablar de fotografía.",
+    "aboutKeywords": "Renaud Fradin,fotógrafo,analógica,portfolio,Francia",
+    "photographyTitle": "Galería fotográfica — Renaud Fradin",
+    "photographyDescription": "Galería de Renaud Fradin: series, ciudades y cámaras analógicas. Imágenes en Francia y en viaje.",
+    "photographyKeywords": "galería fotográfica,Renaud Fradin,fotografía analógica,portfolio",
+    "legalTitle": "Aviso legal — Renaud Fradin",
+    "legalDescription": "Información legal del sitio portfolio y blog fotográfico de Renaud Fradin."
   },
   "PhotographyPage": {
     "title": "Fotografía",
@@ -10,15 +25,17 @@
     "series": "Serie",
     "date": "Fecha",
     "city": "Ciudad",
-    "camera": "Cámara"
+    "camera": "Cámara",
+    "error": "No se pueden cargar las fotos. Comprueba que la API está en marcha."
   },
   "AboutPage": {
     "title": "Renaud Fradin",
-    "subtitle": "Desarrollador full-stack apasionado por crear experiencias digitales innovadoras",
-    "subtitle2": "La fotografía es una afición que alimenta mi visión artística y técnica.",
+    "subtitle": "Fotógrafo apasionado por la analógica y los viajes: comparto mi galería y un blog sobre fotografía en película en Francia.",
+    "subtitle2": "Notas de oficio: desarrollador de día, fotógrafo cuando el tiempo lo permite.",
     "linkedin": "LinkedIn",
     "github": "GitHub",
-    "portfolio": "Portfolio",
+    "instagram": "Instagram",
+    "gallery": "Galería",
     "legal": "Información legal",
     "children": "Contáctame : renaudfradin@gmail.com"
   },

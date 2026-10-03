@@ -1,8 +1,16 @@
 import type { Metadata } from 'next';
+import type { StaticImageData } from 'next/image';
 import { defaultLocale, locales, type Locale } from '@/i18n';
 
 export const SITE_NAME = 'Renaud Fradin';
 export const SITE_AUTHOR = 'Renaud Fradin';
+
+export const DEFAULT_OG_IMAGE_PATH = '/og.jpg';
+
+export const LINKEDIN_URL = 'https://www.linkedin.com/in/renaudfradin/';
+export const GITHUB_URL = 'https://github.com/Renaudfradin';
+export const DEFAULT_INSTAGRAM_URL =
+  'https://www.instagram.com/renaud_photographer/';
 
 const OG_LOCALES: Record<Locale, string> = {
   fr: 'fr_FR',
@@ -18,15 +26,47 @@ export function getSiteUrl(): string {
   if (fromEnv) {
     return fromEnv.replace(/\/$/, '');
   }
-  return 'https://renaudfradin.vercel.app';
+  return 'https://renaudfradinphoto.vercel.app';
+}
+
+export function getInstagramUrl(): string {
+  const fromEnv = process.env.NEXT_PUBLIC_INSTAGRAM_URL?.trim();
+  if (fromEnv) {
+    return fromEnv.replace(/\/$/, '');
+  }
+  return DEFAULT_INSTAGRAM_URL;
+}
+
+export function getSocialSameAs(): string[] {
+  return [LINKEDIN_URL, GITHUB_URL, getInstagramUrl()];
 }
 
 export function isLocale(value: string): value is Locale {
   return (locales as readonly string[]).includes(value);
 }
 
+export function resolveLocale(locale?: string): string {
+  if (locale && isLocale(locale)) return locale;
+  return defaultLocale;
+}
+
 export function toOgLocale(locale: string): string {
   if (isLocale(locale)) return OG_LOCALES[locale];
+  return locale;
+}
+
+const INTL_LOCALES: Record<Locale, string> = {
+  fr: 'fr-FR',
+  en: 'en-US',
+  es: 'es-ES',
+  de: 'de-DE',
+  ru: 'ru-RU',
+  kg: 'ky-KG',
+};
+
+/** BCP 47 locale for `Intl` APIs (`toLocaleDateString`, etc.). */
+export function toIntlLocale(locale: string): string {
+  if (isLocale(locale)) return INTL_LOCALES[locale];
   return locale;
 }
 
@@ -35,7 +75,8 @@ export function localeAlternates(
   path: string,
   locale: string,
 ): NonNullable<Metadata['alternates']> {
-  const normalized = path.startsWith('/') ? path : `/${path}`;
+  const normalized =
+    path === '' ? '' : path.startsWith('/') ? path : `/${path}`;
   const languages: Record<string, string> = {
     'x-default': `/${defaultLocale}${normalized}`,
   };
@@ -51,8 +92,123 @@ export function localeAlternates(
 }
 
 export function absoluteUrl(path: string): string {
-  const normalized = path.startsWith('/') ? path : `/${path}`;
+  const normalized =
+    path === '' ? '' : path.startsWith('/') ? path : `/${path}`;
   return `${getSiteUrl()}${normalized}`;
+}
+
+export function getDefaultOgImageUrl(): string {
+  const fromEnv = process.env.NEXT_PUBLIC_OG_IMAGE_URL?.trim();
+  if (fromEnv) {
+    return fromEnv;
+  }
+  return absoluteUrl(DEFAULT_OG_IMAGE_PATH);
+}
+
+export function resolveMediaUrl(
+  image?: string | StaticImageData,
+): string | undefined {
+  if (!image) return undefined;
+
+  if (typeof image === 'object' && image !== null && 'src' in image) {
+    const src = image.src;
+    if (typeof src === 'string' && src.startsWith('http')) return src;
+    if (typeof src === 'string') return absoluteUrl(src);
+    return undefined;
+  }
+
+  if (typeof image === 'string') {
+    if (image.startsWith('http://') || image.startsWith('https://')) {
+      return image;
+    }
+    const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL?.trim()?.replace(
+      /\/$/,
+      '',
+    );
+    if (apiBase && image.startsWith('/')) {
+      return `${apiBase}${image}`;
+    }
+    return absoluteUrl(image);
+  }
+
+  return undefined;
+}
+
+type PageMetadataInput = {
+  path: string;
+  locale: string;
+  title: string;
+  description: string;
+  keywords?: string[];
+  image?: string;
+};
+
+export function buildPageMetadata({
+  path,
+  locale,
+  title,
+  description,
+  keywords,
+  image,
+}: PageMetadataInput): Metadata {
+  const normalizedPath = path.startsWith('/') || path === '' ? path : `/${path}`;
+  const canonical = `/${locale}${normalizedPath}`;
+  const ogImage = image ?? getDefaultOgImageUrl();
+
+  return {
+    title,
+    description,
+    keywords,
+    authors: [{ name: SITE_AUTHOR }],
+    alternates: localeAlternates(normalizedPath, locale),
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+      locale: toOgLocale(locale),
+      url: canonical,
+      siteName: SITE_NAME,
+      images: [{ url: ogImage, alt: title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [ogImage],
+    },
+  };
+}
+
+type PhotoMetadataInput = {
+  name: string;
+  description: string;
+  slug: string;
+  locale: string;
+  image?: string | StaticImageData;
+  keywords?: string[];
+};
+
+export function buildPhotoMetadata({
+  name,
+  description,
+  slug,
+  locale,
+  image,
+  keywords,
+}: PhotoMetadataInput): Metadata {
+  const pageTitle = `${name} — ${SITE_NAME}`;
+  const path = `/photography/${slug}`;
+  const ogImage =
+    resolveMediaUrl(image) ?? getDefaultOgImageUrl();
+
+  return buildPageMetadata({
+    path,
+    locale,
+    title: pageTitle,
+    description,
+    keywords,
+    image: ogImage,
+  });
 }
 
 type ArticleMetadataInput = {
@@ -77,6 +233,7 @@ export function buildArticleMetadata({
   const pageTitle = `${title} - Blog`;
   const path = `/blog/${slug}`;
   const canonical = `/${locale}${path}`;
+  const ogImage = image ?? getDefaultOgImageUrl();
 
   return {
     title: pageTitle,
@@ -92,16 +249,16 @@ export function buildArticleMetadata({
       siteName: SITE_NAME,
       publishedTime,
       modifiedTime,
-      images: image ? [{ url: image, alt: title }] : undefined,
+      images: [{ url: ogImage, alt: title }],
     },
     twitter: {
       card: 'summary_large_image',
       title: pageTitle,
       description,
-      images: image ? [image] : undefined,
+      images: [ogImage],
     },
   };
-}
+};
 
 type BlogIndexMetadataInput = {
   title: string;
@@ -115,9 +272,10 @@ export function buildBlogIndexMetadata({
   locale,
 }: BlogIndexMetadataInput): Metadata {
   const path = '/blog';
-  const canonical = `/${locale}${path}`;
 
-  return {
+  return buildPageMetadata({
+    path,
+    locale,
     title,
     description,
     keywords: [
@@ -127,21 +285,7 @@ export function buildBlogIndexMetadata({
       'Photography',
       'Portfolio',
     ],
-    alternates: localeAlternates(path, locale),
-    openGraph: {
-      title,
-      description,
-      type: 'website',
-      locale: toOgLocale(locale),
-      url: canonical,
-      siteName: SITE_NAME,
-    },
-    twitter: {
-      card: 'summary',
-      title,
-      description,
-    },
-  };
+  });
 }
 
 type ArticleJsonLdInput = {
@@ -177,6 +321,7 @@ export function buildArticleJsonLd({
       '@type': 'Person',
       name: SITE_AUTHOR,
       url: getSiteUrl(),
+      sameAs: getSocialSameAs(),
     },
     publisher: {
       '@type': 'Person',
@@ -188,5 +333,48 @@ export function buildArticleJsonLd({
       '@id': url,
     },
     url,
+  };
+}
+
+type PersonJsonLdInput = {
+  locale: string;
+  description?: string;
+};
+
+export function buildPersonJsonLd({ locale, description }: PersonJsonLdInput) {
+  const url = absoluteUrl(`/${locale}/about`);
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: SITE_AUTHOR,
+    url,
+    description,
+    image: getDefaultOgImageUrl(),
+    sameAs: getSocialSameAs(),
+    jobTitle: 'Photographer',
+  };
+}
+
+type WebSiteJsonLdInput = {
+  locale: string;
+  description?: string;
+};
+
+export function buildWebSiteJsonLd({ locale, description }: WebSiteJsonLdInput) {
+  const url = absoluteUrl(`/${locale}`);
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE_NAME,
+    url,
+    description,
+    inLanguage: toOgLocale(locale),
+    publisher: {
+      '@type': 'Person',
+      name: SITE_AUTHOR,
+      sameAs: getSocialSameAs(),
+    },
   };
 }
