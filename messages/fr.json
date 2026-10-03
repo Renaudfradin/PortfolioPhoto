@@ -25,7 +25,8 @@
     "series": "Série",
     "date": "Date",
     "city": "Ville",
-    "camera": "Appareil photo"
+    "camera": "Appareil photo",
+    "error": "Impossible de charger les photos. Vérifiez que l'API est démarrée."
   },
   "AboutPage": {
     "title": "Renaud Fradin",

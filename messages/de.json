@@ -25,7 +25,8 @@
     "series": "Serie",
     "date": "Datum",
     "city": "Stadt",
-    "camera": "Kamera"
+    "camera": "Kamera",
+    "error": "Fotos konnten nicht geladen werden. Prüfen Sie, ob die API läuft."
   },
   "AboutPage": {
     "title": "Renaud Fradin",

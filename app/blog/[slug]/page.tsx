@@ -16,6 +16,7 @@ import {
   buildArticleJsonLd,
   buildArticleMetadata,
   resolveLocale,
+  toIntlLocale,
 } from '@/lib/seo';
 import type {
   Article,
@@ -168,7 +169,7 @@ export default async function BlogSlug({ params }: Props) {
       {date ? (
         <div className="mt-2 text-sm text-muted-foreground">
           <time dateTime={date}>
-            {new Date(date).toLocaleDateString(locale, {
+            {new Date(date).toLocaleDateString(toIntlLocale(locale), {
               year: 'numeric',
               month: 'long',
               day: 'numeric',

@@ -11,6 +11,10 @@ export function articleCacheTags(slug: string): string[] {
   return [CACHE_TAGS.articles, CACHE_TAGS.article(slug)];
 }
 
+export function photographyCacheTags(slug: string): string[] {
+  return [CACHE_TAGS.photographies, CACHE_TAGS.photography(slug)];
+}
+
 export function articlePaths(slug: string): string[] {
   return locales.flatMap((locale) => [
     `/${locale}/blog/${slug}`,

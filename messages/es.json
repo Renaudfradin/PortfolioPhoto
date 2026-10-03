@@ -25,7 +25,8 @@
     "series": "Serie",
     "date": "Fecha",
     "city": "Ciudad",
-    "camera": "Cámara"
+    "camera": "Cámara",
+    "error": "No se pueden cargar las fotos. Comprueba que la API está en marcha."
   },
   "AboutPage": {
     "title": "Renaud Fradin",

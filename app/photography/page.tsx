@@ -3,12 +3,11 @@ import { Header } from '@/components/ui/header-on-page';
 import { Metadata } from 'next';
 import { callApi } from '@/lib/api';
 import { extractPhotos } from '@/lib/photography';
+import { CACHE_TAGS } from '@/lib/cache-tags';
 import { buildPageMetadata, resolveLocale } from '@/lib/seo';
 import { getTranslations } from 'next-intl/server';
 import type { PhotographieType } from '@/lib/types/photography';
 import PhotographyGallery from '@/components/photography-gallery';
-
-export const dynamic = 'force-dynamic';
 
 type Props = {
   params: Promise<{ locale?: string }>;
@@ -34,7 +33,9 @@ export default async function Photography() {
   let apiError = false;
 
   try {
-    const data = await callApi<unknown>('/api/photographies');
+    const data = await callApi<unknown>('/api/photographies', {
+      tags: [CACHE_TAGS.photographies],
+    });
     photos = extractPhotos(data);
   } catch {
     apiError = true;
@@ -46,10 +47,7 @@ export default async function Photography() {
         <Header title={t('title')} subtitle={t('subtitle')} />
         <section className="py-24 px-6">
           {apiError ? (
-            <p className="text-sm text-muted-foreground">
-              Impossible de charger les photos. Vérifiez que l&apos;API est
-              démarrée ({process.env.NEXT_PUBLIC_API_BASE_URL}).
-            </p>
+            <p className="text-sm text-muted-foreground">{t('error')}</p>
           ) : (
             <PhotographyGallery photos={photos} />
           )}

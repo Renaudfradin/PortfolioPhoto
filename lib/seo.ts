@@ -55,6 +55,21 @@ export function toOgLocale(locale: string): string {
   return locale;
 }
 
+const INTL_LOCALES: Record<Locale, string> = {
+  fr: 'fr-FR',
+  en: 'en-US',
+  es: 'es-ES',
+  de: 'de-DE',
+  ru: 'ru-RU',
+  kg: 'ky-KG',
+};
+
+/** BCP 47 locale for `Intl` APIs (`toLocaleDateString`, etc.). */
+export function toIntlLocale(locale: string): string {
+  if (isLocale(locale)) return INTL_LOCALES[locale];
+  return locale;
+}
+
 /** Path without locale prefix, e.g. `/blog` or `/blog/my-slug`. */
 export function localeAlternates(
   path: string,

@@ -24,6 +24,7 @@ async function fetchArticleSlugs(): Promise<string[]> {
 async function fetchPhotographySlugs(): Promise<string[]> {
   try {
     const data = await callApi<unknown>('/api/photographies', {
+      tags: [CACHE_TAGS.photographies],
       enablePerformanceLog: false,
     });
     return photographySlugs(extractPhotos(data));

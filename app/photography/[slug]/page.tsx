@@ -2,11 +2,11 @@ import Image from 'next/image';
 import { Metadata } from 'next';
 import AnimationWrapper from '@/components/ui/animation-wrapper';
 import { callApi } from '@/lib/api';
+import { photographyCacheTags } from '@/lib/cache-tags';
 import { extractPhoto } from '@/lib/photography';
 import { buildPhotoMetadata, resolveLocale } from '@/lib/seo';
 import { notFound } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
-export const dynamic = 'force-dynamic';
 
 type Props = {
   params: Promise<{ slug: string; locale?: string }>;
@@ -15,7 +15,9 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug, locale: localeParam } = await params;
   const locale = resolveLocale(localeParam);
-  const data = await callApi<unknown>(`/api/photography/${slug}`);
+  const data = await callApi<unknown>(`/api/photography/${slug}`, {
+    tags: photographyCacheTags(slug),
+  });
   const photo = extractPhoto(data);
   const name = photo?.name ?? 'Photo';
   const series = photo?.series;
@@ -47,7 +49,9 @@ export async function generateStaticParams() {
 
 export default async function Photographie({ params }: Props) {
   const { slug } = await params;
-  const data = await callApi<unknown>(`/api/photography/${slug}`);
+  const data = await callApi<unknown>(`/api/photography/${slug}`, {
+    tags: photographyCacheTags(slug),
+  });
   const photo = extractPhoto(data);
   const t = await getTranslations('PhotographyPage');
 

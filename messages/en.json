@@ -25,7 +25,8 @@
     "series": "Series",
     "date": "Date",
     "city": "City",
-    "camera": "Camera"
+    "camera": "Camera",
+    "error": "Unable to load photos. Check that the API is running."
   },
   "AboutPage": {
     "title": "Renaud Fradin",
