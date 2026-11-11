@@ -1,9 +1,38 @@
+import { defaultLocale, locales, type Locale } from '@/i18n';
 import type {
   Article,
   ArticleApiResponse,
   ArticleContentBlock,
   ArticlesApiResponse,
 } from '@/lib/types/article';
+
+/**
+ * API-Folio locales. Kyrgyz is `ky` on the API and `kg` on the site.
+ */
+const ARTICLE_API_LOCALES: Record<Locale, string> = {
+  fr: 'fr',
+  en: 'en',
+  es: 'es',
+  de: 'de',
+  ru: 'ru',
+  kg: 'ky',
+};
+
+export function toArticleApiLocale(locale?: string): string {
+  if (locale && (locales as readonly string[]).includes(locale)) {
+    return ARTICLE_API_LOCALES[locale as Locale];
+  }
+
+  return ARTICLE_API_LOCALES[defaultLocale];
+}
+
+export function articlesPath(locale?: string): string {
+  return `/api/articles?lang=${toArticleApiLocale(locale)}`;
+}
+
+export function articlePath(slug: string, locale?: string): string {
+  return `/api/article/${slug}?lang=${toArticleApiLocale(locale)}`;
+}
 
 export function extractArticles(data: ArticlesApiResponse | null): Article[] {
   if (!data) return [];

@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { getLocale } from 'next-intl/server';
 import { Providers } from '@/lib/providers';
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from '@vercel/analytics/next';
 import { defaultLocale } from '@/i18n';
 import { getSiteUrl } from '@/lib/seo';
 

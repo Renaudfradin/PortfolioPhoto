@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { callApi } from '@/lib/api';
-import { extractArticles } from '@/lib/articles';
+import { articlesPath, extractArticles } from '@/lib/articles';
 import { CACHE_TAGS } from '@/lib/cache-tags';
 import { buildBlogIndexMetadata, isLocale } from '@/lib/seo';
 import { defaultLocale } from '@/i18n';
@@ -38,7 +38,7 @@ export default async function Blog({ params }: Props) {
   let apiError = false;
 
   try {
-    const data = await callApi<ArticlesApiResponse>('/api/articles', {
+    const data = await callApi<ArticlesApiResponse>(articlesPath(locale), {
       tags: [CACHE_TAGS.articles],
     });
     articles = extractArticles(data);
@@ -64,7 +64,7 @@ export default async function Blog({ params }: Props) {
                 href={href}
                 className="block overflow-hidden rounded-lg border"
               >
-                <div className="relative aspect-[16/10] w-full bg-muted p-2">
+                <div className="relative aspect-16/10 w-full bg-muted p-2">
                   {article.image ? (
                     <Image
                       src={article.image}

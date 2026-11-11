@@ -37,7 +37,7 @@ export default function ImageContainer({
             placeholder={placeholder}
           />
 
-          <div className="absolute rounded-b-sm top-0 mt-20 right-0 bottom-0 left-0 bg-gradient-to-b from-transparent to-zinc-900 opacity-80 md:opacity-0 group-hover:opacity-80"></div>
+          <div className="absolute rounded-b-sm top-0 mt-20 right-0 bottom-0 left-0 bg-linear-to-b from-transparent to-zinc-900 opacity-80 md:opacity-0 group-hover:opacity-80"></div>
           <div>
             {photo.city ? (
               <p className="text-xs absolute bottom-1 text-white px-2 transition duration-200 opacity-70 md:opacity-0 group-hover:opacity-75">

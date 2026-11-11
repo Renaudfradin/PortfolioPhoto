@@ -68,7 +68,7 @@ export default async function Photographie({ params }: Props) {
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
               <div className="lg:col-span-2">
-                <div className="relative aspect-[4/3] w-full">
+                <div className="relative aspect-4/3 w-full">
                   <Image
                     src={photo.image}
                     alt={name}
