@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 type Props = {
   children?: string | JSX.Element;
   title: string;

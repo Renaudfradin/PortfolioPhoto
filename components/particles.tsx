@@ -36,35 +36,6 @@ export const Particles: React.FC<ParticlesProps> = ({
   const color_dark = 'rgba(223, 230, 233';
   const color_light = 'rgba(45, 52, 54';
 
-  useEffect(() => {
-    if (canvasRef.current) {
-      context.current = canvasRef.current.getContext('2d');
-    }
-    initCanvas();
-    animate();
-    window.addEventListener('resize', initCanvas);
-
-    return () => {
-      window.removeEventListener('resize', initCanvas);
-    };
-  }, []);
-
-  useEffect(() => {
-    onMouseMove();
-  }, [mousePosition.x, mousePosition.y]);
-
-  useEffect(() => {
-    initCanvas();
-  }, [refresh]);
-
-  useEffect(() => {
-    let color = resolvedTheme === 'dark' ? color_dark : color_light;
-    // console.log("resolvedTheme", resolvedTheme);
-    circles.current.forEach((circle: any) => {
-      circle.color_t = color;
-    });
-  }, [theme, resolvedTheme]);
-
   const initCanvas = () => {
     resizeCanvas();
     drawParticles();
@@ -244,6 +215,34 @@ export const Particles: React.FC<ParticlesProps> = ({
     });
     window.requestAnimationFrame(animate);
   };
+
+  useEffect(() => {
+    if (canvasRef.current) {
+      context.current = canvasRef.current.getContext('2d');
+    }
+    initCanvas();
+    animate();
+    window.addEventListener('resize', initCanvas);
+
+    return () => {
+      window.removeEventListener('resize', initCanvas);
+    };
+  }, []);
+
+  useEffect(() => {
+    onMouseMove();
+  }, [mousePosition.x, mousePosition.y]);
+
+  useEffect(() => {
+    initCanvas();
+  }, [refresh]);
+
+  useEffect(() => {
+    const color = resolvedTheme === 'dark' ? color_dark : color_light;
+    circles.current.forEach((circle: any) => {
+      circle.color_t = color;
+    });
+  }, [theme, resolvedTheme]);
 
   return (
     <div className={className} ref={canvasContainerRef} aria-hidden="true">

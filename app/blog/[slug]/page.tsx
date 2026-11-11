@@ -180,7 +180,7 @@ export default async function BlogSlug({ params }: Props) {
         </div>
       ) : null}
       {article.image ? (
-        <div className="relative mt-8 aspect-[16/10] w-full overflow-hidden rounded-lg bg-muted">
+        <div className="relative mt-8 aspect-16/10 w-full overflow-hidden rounded-lg bg-muted">
           <Image
             src={article.image}
             alt={title}

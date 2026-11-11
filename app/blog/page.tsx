@@ -64,7 +64,7 @@ export default async function Blog({ params }: Props) {
                 href={href}
                 className="block overflow-hidden rounded-lg border"
               >
-                <div className="relative aspect-[16/10] w-full bg-muted p-2">
+                <div className="relative aspect-16/10 w-full bg-muted p-2">
                   {article.image ? (
                     <Image
                       src={article.image}

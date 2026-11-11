@@ -31,7 +31,7 @@ export default function PhotographyGallery({
   return (
     <div>
       {cities.length > 0 ? (
-        <div className="mb-10 rounded-lg border bg-card/60 backdrop-blur px-4 py-3">
+        <div className="mb-10 rounded-lg border bg-card/60 backdrop-blur-sm px-4 py-3">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex flex-col gap-1">
               <div className="text-sm font-medium">Filtrer</div>
