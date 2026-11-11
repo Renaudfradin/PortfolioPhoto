@@ -3,7 +3,9 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { callApi } from '@/lib/api';
 import {
+  articlePath,
   articleSlugs,
+  articlesPath,
   blocksToPlainText,
   extractArticle,
   extractArticles,
@@ -77,7 +79,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = resolveLocale(localeParam);
 
   try {
-    const data = await callApi<ArticleApiResponse>(`/api/article/${slug}`, {
+    const data = await callApi<ArticleApiResponse>(articlePath(slug, locale), {
       tags: articleCacheTags(slug),
     });
     const article = extractArticle(data);
@@ -110,7 +112,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export async function generateStaticParams() {
   try {
-    const data = await callApi<ArticlesApiResponse>('/api/articles', {
+    const data = await callApi<ArticlesApiResponse>(articlesPath(defaultLocale), {
       tags: [CACHE_TAGS.articles],
       enablePerformanceLog: false,
     });
@@ -130,7 +132,7 @@ export default async function BlogSlug({ params }: Props) {
   let article: Article | null = null;
 
   try {
-    const data = await callApi<ArticleApiResponse>(`/api/article/${slug}`, {
+    const data = await callApi<ArticleApiResponse>(articlePath(slug, locale), {
       tags: articleCacheTags(slug),
     });
     article = extractArticle(data);

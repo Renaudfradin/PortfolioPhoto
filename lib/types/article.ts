@@ -19,6 +19,8 @@ export interface Article {
   content?: string | ArticleContentBlock[];
   image?: string;
   date?: string;
+  lang?: string;
+  available_langs?: string[];
   active?: boolean;
   created_at?: string;
   updated_at?: string;

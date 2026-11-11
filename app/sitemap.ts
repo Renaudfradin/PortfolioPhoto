@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
-import { locales } from '@/i18n';
+import { defaultLocale, locales } from '@/i18n';
 import { callApi } from '@/lib/api';
-import { articleSlugs, extractArticles } from '@/lib/articles';
+import { articleSlugs, articlesPath, extractArticles } from '@/lib/articles';
 import { CACHE_TAGS } from '@/lib/cache-tags';
 import { extractPhotos, photographySlugs } from '@/lib/photography';
 import { getSiteUrl } from '@/lib/seo';
@@ -11,7 +11,7 @@ const STATIC_PATHS = ['', '/blog', '/photography', '/about', '/legal'] as const;
 
 async function fetchArticleSlugs(): Promise<string[]> {
   try {
-    const data = await callApi<ArticlesApiResponse>('/api/articles', {
+    const data = await callApi<ArticlesApiResponse>(articlesPath(defaultLocale), {
       tags: [CACHE_TAGS.articles],
       enablePerformanceLog: false,
     });
